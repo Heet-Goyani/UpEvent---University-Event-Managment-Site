@@ -20,6 +20,10 @@
     color: var(--primary);
 }
 
+.btn {
+    width: fit-content !important;
+}
+
 .filterBtn {
     color: var(--white);
     background-color: var(--primary);
@@ -75,9 +79,22 @@
 
 /* media queries */
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1024px) {
     .carousel-caption div {
         font-size: 42px;
+    }
+
+    .heading2 {
+        padding: 0 60px;
+    }
+
+    .heading2 div {
+        font-size: 24px;
+    }
+
+    .btn {
+        height: 40px;
+        font-size: 14px;
     }
 }
 
@@ -91,11 +108,26 @@
     .carousel-caption div {
         font-size: 32px;
     }
+
 }
 
 @media screen and (max-width: 768px) {
     .carousel-caption div {
         font-size: 24px;
+    }
+
+    .heading2 {
+        padding: 0 50px;
+    }
+
+    .heading2 div {
+        font-size: 20px;
+    }
+
+    .btn {
+        height: 40px;
+        width: 80px;
+        font-size: 14px;
     }
 }
 
@@ -118,11 +150,10 @@
         margin-top: 0px;
     }
 
-    
     .carousel-inner {
         border-radius: 0;
     }
-    
+
     .carousel-caption {
         position: absolute;
         top: 50%;
@@ -147,5 +178,15 @@
 
     .arrows {
         visibility: hidden;
+    }
+
+    .heading2 {
+        padding: 0 20px;
+    }
+
+    .btn {
+        height: 35px;
+        width: 80px;
+        font-size: 12px;
     }
 }
