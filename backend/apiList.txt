@@ -25,3 +25,27 @@ Create Event : POST {domain}/event/Create                                       
 Update Event : PATCH {domain}/event/Update/{eventId}                                        //DONE and TESTED
 List my Events : 
 Dashboard : 
+
+Public APIs :
+
+User Forgot password, send otp : POST {domain}/user/sendotp
+{
+    "email" : "himanshukabra2212@gmail.com"
+}
+Verify Otp and set new password : POST {domain}/user/verifyotp
+{
+    "email" : "himanshukabra2212@gmail.com",
+    "otp" : 1234,
+    "newPassword" : "hellowowlrd"
+}
+
+Organiser Forgot password, send otp : POST {domain}/organiser/sendotp
+{
+    "email" : "himanshukabra2212@gmail.com"
+}
+Verify Otp and set new password : POST {domain}/organiser/verifyotp
+{
+    "email" : "himanshukabra2212@gmail.com",
+    "otp" : 1234,
+    "newPassword" : "hellowowlrd"
+}

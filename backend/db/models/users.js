@@ -29,6 +29,11 @@ User.init(
         isEmail: true,
       },
     },
+    verified: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
     college: {
       type: DataTypes.STRING,
       // allowNull: false,

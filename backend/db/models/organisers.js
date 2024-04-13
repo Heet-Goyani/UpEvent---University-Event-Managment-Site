@@ -26,6 +26,11 @@ Organiser.init(
         isEmail: true,
       },
     },
+    verified: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,

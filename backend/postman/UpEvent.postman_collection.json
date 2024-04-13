@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"Himanshukabra22@gmail.com\",\r\n    \"password\" : \"Himanshu1234\"\r\n}",
+							"raw": "{\r\n    \"email\" : \"lazypeter000@gmail.com\",\r\n    \"password\" : \"Himanshu1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"Himanshukabra22@gmail.com\",\r\n    \"password\" : \"Himanshu1234\"\r\n}",
+							"raw": "{\r\n    \"email\" : \"lazypeter00@gmail.com\",\r\n    \"password\" : \"nayapassword\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -68,18 +68,21 @@
 				},
 				{
 					"name": "List all events (filter)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "",
+									"value": "{{USER_TOKEN}}",
 									"type": "string"
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -91,13 +94,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/event/list",
+							"raw": "{{BASE_URL}}/user/events",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"event",
-								"list"
+								"user",
+								"events"
 							]
 						}
 					},
@@ -119,14 +122,14 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/user/bookmarkevent/4",
+							"raw": "{{BASE_URL}}/user/bookmarkevent/1",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"user",
 								"bookmarkevent",
-								"4"
+								"1"
 							]
 						}
 					},
@@ -148,13 +151,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/user/bookmarkevent",
+							"raw": "{{BASE_URL}}/user/bookmarkedevents",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"user",
-								"bookmarkevent"
+								"bookmarkedevents"
 							]
 						}
 					},
@@ -176,14 +179,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/user/bookmarkevent/4",
+							"raw": "{{BASE_URL}}/user/isbookmarked/1",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"user",
-								"bookmarkevent",
-								"4"
+								"isbookmarked",
+								"1"
 							]
 						}
 					},
@@ -205,14 +208,14 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/user/registerevent/5",
+							"raw": "{{BASE_URL}}/user/registerevent/2",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"user",
 								"registerevent",
-								"5"
+								"2"
 							]
 						}
 					},
@@ -234,13 +237,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/user/registerevent",
+							"raw": "{{BASE_URL}}/user/registeredevents",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"user",
-								"registerevent"
+								"registeredevents"
 							]
 						}
 					},
@@ -262,14 +265,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/user/registerevent/3",
+							"raw": "{{BASE_URL}}/user/isregistered/1",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"user",
-								"registerevent",
-								"3"
+								"isregistered",
+								"1"
 							]
 						}
 					},
@@ -291,13 +294,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/user/profile",
+							"raw": "{{BASE_URL}}/user",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"user",
-								"profile"
+								"user"
 							]
 						}
 					},
@@ -328,13 +330,76 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/user/profile",
+							"raw": "{{BASE_URL}}/user",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{USER_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\" : \"newPassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user/changepassword",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"user",
-								"profile"
+								"changepassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{USER_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/user",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user"
 							]
 						}
 					},
@@ -419,7 +484,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"SQL speaker session 5\",\r\n    \"description\" : \"Speaker : Himanshu Kabra\",\r\n    \"genre\" : \"technical\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"SQL speaker session 6\",\r\n    \"description\" : \"Speaker : Himanshu Kabra\",\r\n    \"genre\" : \"technical\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -427,11 +492,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/event/create",
+							"raw": "{{BASE_URL}}/organiser/event/create",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
+								"organiser",
 								"event",
 								"create"
 							]
@@ -455,13 +521,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/organiser/profile",
+							"raw": "{{BASE_URL}}/organiser",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"organiser",
-								"profile"
+								"organiser"
 							]
 						}
 					},
@@ -492,13 +557,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/organiser/profile",
+							"raw": "{{BASE_URL}}/organiser",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"organiser",
-								"profile"
+								"organiser"
 							]
 						}
 					},
@@ -521,7 +585,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"MySql Speaker session\"\r\n}",
+							"raw": "{\r\n    \"instagram\" : \"MySql Speaker session 4\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -529,14 +593,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/event/update/1",
+							"raw": "{{BASE_URL}}/organiser/event/update/3",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
+								"organiser",
 								"event",
 								"update",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -554,13 +619,32 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/user/profile/1",
+							"raw": "{{BASE_URL}}/public/users/2",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"user",
-								"profile",
+								"public",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get organiser profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/public/organisers/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"public",
+								"organisers",
 								"1"
 							]
 						}
@@ -568,7 +652,62 @@
 					"response": []
 				},
 				{
-					"name": "List all events (filter)",
+					"name": "Get event details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/public/events/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"public",
+								"events",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all user list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/public/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"public",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all organiser list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/public/organisers",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"public",
+								"organisers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get filtered event list",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -592,50 +731,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/event/list",
+							"raw": "{{BASE_URL}}/public/events",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"event",
-								"list"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get event details",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/event/3",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"event",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get organiser profile",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/organiser/profile/1",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"organiser",
-								"profile",
-								"1"
+								"public",
+								"events"
 							]
 						}
 					},

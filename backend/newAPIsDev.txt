@@ -1,0 +1,18 @@
+User APIs :
+    Create User
+    Get User
+    Update User
+    Delete User
+    List Users
+
+    Get Personalized EventList (Bookmark true/false) (Register true/false)
+        Get Bookmarked Events
+        Get Registered Events
+    Bookmark/UnBookmark event
+    isBookmarked event
+    Register/Unregister event
+    isRegistered event
+    Get Event Details
+
+
+

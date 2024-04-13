@@ -3,21 +3,18 @@ const router = Router();
 
 // Controller imports
 import {
-  getProfilePublic,
-  getProfilePrivate,
+  getProfile,
   updateProfile,
+  deleteProfile,
 } from "../../controllers/organiser/organiserProfile.js";
 
 // Middleware imports
 import isOrganiser from "../../middlewares/auth/isOrganiser.js";
 
 // Model imports
-// import bookmarkEvent from "../../db/models/bookmarkEvents.js";
-// import Event from "../../db/models/events.js";
-// import User from "../../db/models/users.js";
 
-router.get("/profile/:id", getProfilePublic); // Public route
-router.get("/profile", isOrganiser, getProfilePrivate); // Public route
-router.patch("/profile", isOrganiser, updateProfile);
+router.get("/", isOrganiser, getProfile); // Public route
+router.patch("/", isOrganiser, updateProfile);
+router.delete("/", isOrganiser, deleteProfile);
 
 export default router;
