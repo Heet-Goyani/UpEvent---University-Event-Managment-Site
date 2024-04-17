@@ -1,5 +1,5 @@
 const API = {
-    'BASE_URL': process.env.NODE_ENV === 'development' ? import.meta.env.VITE_DEV_MODE : import.meta.env.VITE_PRO_MODE,
+    'BASE_URL': import.meta.env.VITE_DEV_MODE,
     // user
     'REGISTER_USER': '/user/auth/register',
     'LOGIN_USER': '/user/auth/login',

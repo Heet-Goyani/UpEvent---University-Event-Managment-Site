@@ -3,8 +3,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 2.0vmax;
-    padding: 0 8.33vmax;
+    margin-top: 2vmax;
+    /* side margin 1 */
+    padding: 0 8.34vw;
 }
 
 .heading {
@@ -13,6 +14,11 @@
     justify-content: center;
     font-size: 40px;
     font-family: Bold;
+}
+
+.heading .logo {
+    width: 40px;
+    margin-right: 20px;
 }
 
 p {
@@ -25,8 +31,8 @@ p {
 }
 
 .profile {
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
 }
 
@@ -40,91 +46,180 @@ p {
 .btn {
     border: none;
     cursor: pointer;
-    height: 45px;
-    width: 100px;
+    min-height: 45px;
+    min-width: 100px;
     margin: 0 5px;
     border-radius: 5px;
     font-family: 'Regular';
     font-size: 16px;
 }
 
-.btnBox .btn:first-child {
-    color: inherit;
-    background-color: var(--background);
+.btn-outline {
+    color: var(--primary);
+    background-color: transparent;
+    border: 1px solid var(--primary);
+    box-shadow: rgba(120, 72, 244, 0.3) 0px 0px 8px;
 }
 
-.btnBox .btn:last-child {
+.btn-fill {
     color: var(--white);
     background-color: var(--primary);
+    box-shadow: var(--primary) 0px 0px 5px;
 }
 
-.btn:first-child:hover {
-    color: var(--white);
-    background-color: var(--primary);
+.btn-outline:hover {
+    background-color: rgba(120, 72, 244, 0.3);
     transition: 0.3s;
 }
 
-.btn:last-child:hover {
-    opacity: 0.8;
+.btn-fill:hover {
+    background-color: rgba(120, 72, 244, 0.7);
     transition: 0.3s;
+}
+
+.profile-section .dropdown-menu {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 120px;
+    background-color: var(--white);
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+    padding: 0;
+}
+
+.dropdown-menu .dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: var(--primary);
+    font-family: 'Regular';
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.dropdown-menu .dropdown-divider {
+    margin: 0 5px;
+    border-color: var(--primary);
+}
+
+.dropdown-menu .dropdown-item .bi {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: rgba(120, 72, 244, 0.3);
+    color: var(--primary);
 }
 
 @media screen and (max-width: 1024px){
     .cont {
-        padding: 0 60px;
+        margin-top: 25px;
+        /* side margin 2 */
+        padding: 0 6vw;
     }
-    .heading {
-        font-size: 35px;
-    }
-    .btn {
-        height: 40px;
-        width: 80px;
-        font-size: 14px;
-    }
+
     .profile {
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .heading .logo {
+        width: 36px;
+        margin-right: 16px;
+    }
+
+    .heading {
+        font-size: 36px;
+    }
+
+    .btn {
+        min-height: 40px;
+        min-width: 90px;
+        font-size: 14px;
     }
 }
 
 @media screen and (max-width: 768px) {
     .cont {
-        padding: 0 50px;
+        margin-top: 20px;
+        /* side margin 3 */
+        padding: 0 6vw;
     }
-    .heading {
-        font-size: 30px;
-    }
-    .btn {
+
+    .profile {
+        width: 40px;
         height: 40px;
-        width: 80px;
+    }
+
+    .heading .logo {
+        width: 32px;
+        margin-right: 12px;
+    }
+
+    .heading {
+        font-size: 32px;
+    }
+
+    .btn {
+        min-height: 36px;
+        min-width: 80px;
         font-size: 14px;
     }
 }
 
 @media screen and (max-width: 480px){
     .cont {
-        margin-top: 1.4em;
+        margin-top: 15px;
+        /* side margin 4 */
         padding: 0 20px;
     }
-    .heading {
-        font-size: 1.56em;
+
+    .heading .logo {
+        width: 28px;
+        margin-right: 8px;
     }
+
+    .heading {
+        font-size: 1.5em;
+    }
+
     .btn {
-        height: 35px;
-        width: 80px;
+        min-height: 32px;
+        min-width: 70px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 360px){
+    .cont {
+        /* side margin 5 */
+        padding: 0 15px;
+    }
+
+    .btn {
+        min-height: 30px;
+        min-width: 65px;
         font-size: 12px;
     }
 }
 
 @media screen and (max-width: 320px){
-    .cont {
-        margin-top: 1.2em;
+    .heading .logo {
+        width: 24px;
+        margin-right: 8px;
     }
+
     .heading {
         font-size: 20px;
     }
+
     .btn {
-        height: 30px;
-        width: 70px;
+        min-height: 28px;
+        min-width: 60px;
+        font-size: 10px;
     }
 }
