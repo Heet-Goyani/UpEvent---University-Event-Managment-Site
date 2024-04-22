@@ -8,15 +8,15 @@
     padding: 0 8.34vw;
 }
 
-.heading {
+.home-heading {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
+    font-size: 2.5rem;
     font-family: Bold;
 }
 
-.heading .logo {
+.home-heading .logo {
     width: 40px;
     margin-right: 20px;
 }
@@ -31,8 +31,8 @@ p {
 }
 
 .profile {
-    width: 48px;
-    height: 48px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
 }
 
@@ -123,17 +123,17 @@ p {
     }
 
     .profile {
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
     }
 
-    .heading .logo {
+    .home-heading .logo {
         width: 36px;
         margin-right: 16px;
     }
 
-    .heading {
-        font-size: 36px;
+    .home-heading {
+        font-size: 2.25rem;
     }
 
     .btn {
@@ -150,18 +150,13 @@ p {
         padding: 0 6vw;
     }
 
-    .profile {
-        width: 40px;
-        height: 40px;
-    }
-
-    .heading .logo {
+    .home-heading .logo {
         width: 32px;
         margin-right: 12px;
     }
 
-    .heading {
-        font-size: 32px;
+    .home-heading {
+        font-size: 2rem;
     }
 
     .btn {
@@ -178,13 +173,13 @@ p {
         padding: 0 20px;
     }
 
-    .heading .logo {
+    .home-heading .logo {
         width: 28px;
         margin-right: 8px;
     }
 
-    .heading {
-        font-size: 1.5em;
+    .home-heading {
+        font-size: 1.5rem;
     }
 
     .btn {
@@ -200,6 +195,11 @@ p {
         padding: 0 15px;
     }
 
+    .profile {
+        width: 35px;
+        height: 35px;
+    }
+
     .btn {
         min-height: 30px;
         min-width: 65px;
@@ -208,13 +208,13 @@ p {
 }
 
 @media screen and (max-width: 320px){
-    .heading .logo {
+    .home-heading .logo {
         width: 24px;
         margin-right: 8px;
     }
 
-    .heading {
-        font-size: 20px;
+    .home-heading {
+        font-size: 1.25rem;
     }
 
     .btn {

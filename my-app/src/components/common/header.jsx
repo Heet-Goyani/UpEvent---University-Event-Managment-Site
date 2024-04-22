@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // styles
 import '../../styles/common/header.css';
@@ -6,20 +7,34 @@ import '../../styles/common/header.css';
 // assets
 import { images } from '../../assets/images';
 
+// react-redux
+import { useSelector, useDispatch } from 'react-redux';
+import { logOut } from '../../redux/slices/userSlice';
+
 const Header = () => {
-    const [isLoggedIn] = useState(false);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { userToken, userData } = useSelector(state => state.user);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleLogin = () => {
-        window.location.href = '/login';
+        navigate('/login');
     };
 
     const handleSignup = () => {
-        window.location.href = '/signup';
+        navigate('/register');
     };
 
+    useEffect(() => {
+        if(userToken !== null && userData !== null) {
+            setIsLoggedIn(true);
+        }
+        console.log(userToken, userData);
+    }, []);
+    
     return (
-        <div className='cont'>
-            <div className='heading'>
+        <div className='cont' id='home-header'>
+            <div className='home-heading'>
                 <img src={images.logo} alt="logo" className='logo' />
                 <p className='p1'>Up</p><p className='p2'>Event</p>
             </div>
@@ -27,7 +42,7 @@ const Header = () => {
                 isLoggedIn ? (
                     <div className="profile-section">
                         <a className="profile-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="https://lh3.googleusercontent.com/a/ACg8ocJeNOks3NynMczVETRtQorWS8-SWU4XxublttudK3Y1VOI=s432-c-no" className="profile" alt="Profile" />
+                            <img src={userData.profilePic} className="profile" alt="Profile" />
                         </a>
                         <div className="dropdown-menu dropdown-menu-right profile-dropdown" aria-labelledby="navbarDropdownMenuLink">
                             <a className="dropdown-item" href="#">
@@ -37,7 +52,9 @@ const Header = () => {
                                 <i className="bi bi-bookmark"></i> Bookmarks
                             </a>
                             <div className="dropdown-divider"></div>
-                            <a className="dropdown-item" href="#">
+                            <a className="dropdown-item" href="/" onClick={() => {
+                                dispatch(logOut());
+                            }}>
                                 <i className="bi bi-box-arrow-right"></i> Log Out
                             </a>
                         </div>
@@ -45,7 +62,7 @@ const Header = () => {
                 ) : (
                     <div className='btnBox'>
                         <button className='btn btn-outline' onClick={handleLogin}>Login</button>
-                        <button className='btn btn-fill' onClick={handleSignup}>Signup</button>
+                        <button className='btn btn-fill' onClick={handleSignup}>Register</button>
                     </div>
                 )
             }

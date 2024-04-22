@@ -1,8 +1,9 @@
-const API = {
+export const API = {
     'BASE_URL': import.meta.env.VITE_DEV_MODE,
     // user
     'REGISTER_USER': '/user/auth/register',
     'LOGIN_USER': '/user/auth/login',
+    'USER_EVENTS': '/user/events',
     'GET_USER': '/user/profile',
     'UPDATE_USER': '/user/profile',
     // event
@@ -13,6 +14,6 @@ const API = {
     'BOOKMARK_EVENT': '/user/bookmarkevent/',
     'BOOKMARKED_EVENTS': '/user/bookmarkevent', 
     'CHECK_BOOKMARK': '/user/bookmarkevent/',
+    // public apis
+    'PUBLIC_EVENTS_LIST': '/public/events',
 }
-
-export default API;

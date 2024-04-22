@@ -1,0 +1,230 @@
+#register {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Regular;
+}
+
+#signin {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Regular;
+}
+
+.right-portion {
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-portion .back-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--primary);
+    cursor: pointer;
+    align-self: flex-start;
+    position: absolute;
+    top: 20px;
+    margin-left: 20px;
+}
+
+.right-portion .back-btn .bi-chevron-left {
+    font-size: 1.2rem;
+    margin-right: 3px;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-family: Bold;
+}
+
+.heading {
+    font-size: 2rem;
+    margin: 20px 0 0 0;
+}
+
+.sub-heading {
+    font-size: 1rem;
+    color: #777;
+    margin: 20px 0 0 0;
+    width: 60%;
+    text-align: center;
+}
+
+.right-portion form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.form-group {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 1rem;
+    font-family: Regular;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+}
+
+.form-group div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* .form-group span {
+    font-size: 0.8rem;
+    font-family: Regular;
+    color: var(--gray-600);
+    cursor: pointer;
+} */
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border: 1px solid var(--primary);
+    box-shadow: rgba(120, 72, 244, 0.3) 0px 0px 6px;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px;
+    color: var(--gray-600);
+    background-color: #ffffff !important;
+    cursor: pointer;
+}
+
+.dropdown-icon {
+    color: var(--gray-600);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+}
+
+.custom-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1.4px solid rgba(120, 72, 244, 0.8);
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: 5px;
+    scrollbar-color: rgba(120, 72, 244, 0.8) white;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+.form-group button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: var(--primary);
+    color: #fff;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: rgba(120, 72, 244, 0.8);
+    transition: 0.3s;
+}
+
+#register .cover-img, #signin .cover-img {
+    object-fit: cover;
+    height: 100vh;
+    width: 60vw;
+}
+
+.forgot-pass {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+}
+
+@media screen and (max-width: 1024px) {
+    #register .cover-img, #signin .cover-img {
+        width: 50vw;
+    }
+
+    .right-portion {
+        width: 50vw;
+    }
+
+    .form-group {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #register .cover-img,
+        #signin .cover-img {
+        width: 40vw;
+    }
+
+    .right-portion {
+        width: 60vw;
+    }
+
+    .form-group {
+        width: 80%;
+    }
+
+    .forgot-pass {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #register .cover-img,
+        #signin .cover-img {
+        display: none;
+    }
+
+    .right-portion {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .forgot-pass {
+        font-size: 0.7rem;
+    }
+}
