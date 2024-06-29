@@ -62,6 +62,10 @@ app.get("/hello", (req, res) => {
 app.listen(3000, () => {
   testConnection();
   (async () => {
+    Event.belongsTo(Organiser, {
+      foreignKey: "organiserId",
+      onDelete: "CASCADE",
+    });
     bookmarkEvent.belongsTo(Event, {
       foreignKey: "eventId",
       onDelete: "CASCADE",
@@ -87,7 +91,7 @@ app.listen(3000, () => {
       onDelete: "CASCADE",
     });
 
-    // await sequelize.sync({ alter: true });
+    await sequelize.sync({ alter : true });
   })();
   console.log(
     "<<--------------------------------------------------------->>\n\nApplication is running, Use Ctrl + click on following URL :\nhttp://localhost:3000/hello\n\n<<--------------------------------------------------------->>"

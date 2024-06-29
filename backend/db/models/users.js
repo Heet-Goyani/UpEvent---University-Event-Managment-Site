@@ -18,8 +18,7 @@ User.init(
     },
     name: {
       type: DataTypes.STRING,
-      // allowNull: false,
-      allowNull: true,
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
@@ -36,8 +35,7 @@ User.init(
     },
     college: {
       type: DataTypes.STRING,
-      // allowNull: false,
-      allowNull: true,
+      allowNull: false,
     },
     password: {
       type: DataTypes.STRING,

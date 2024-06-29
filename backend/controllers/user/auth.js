@@ -42,7 +42,8 @@ export const login = async (req, res) => {
 // Registeration tested. password validation error removed.
 export const register = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    console.log("Hello");
+    const { email, password, name, college } = req.body;
     const old = await User.findOne({
       where: { email },
     });
@@ -52,6 +53,8 @@ export const register = async (req, res) => {
     const newUser = await User.create({
       email,
       password,
+      name,
+      college
     });
     const token = jwt.sign(
       {
@@ -62,7 +65,8 @@ export const register = async (req, res) => {
       },
       process.env.JWT_SECRET
     );
-    delete newUser.password;
+    console.log(newUser);
+    delete newUser.dataValues.password;
     return res.status(201).json({ token, user: newUser});
   } catch (error) {
     console.log(error);

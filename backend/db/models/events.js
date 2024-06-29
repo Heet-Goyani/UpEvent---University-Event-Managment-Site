@@ -2,9 +2,6 @@ import { Sequelize, Model } from "sequelize";
 import { sequelize } from "../connection.js";
 import Organiser from "./organisers.js";
 
-import Register from "./registerEvents.js";
-import Bookmark from "./bookmarkEvents.js";
-
 class Event extends Model {}
 
 // Some values are set to allowNull: true for testing purposes. Change them to false later.
@@ -27,12 +24,11 @@ Event.init(
     },
     name: {
       type: Sequelize.DataTypes.STRING,
-      // allowNull: false,
-      allowNull: true,
+      allowNull: false,
     },
     description: {
       type: Sequelize.DataTypes.TEXT("long"),
-      // allowNull: false,
+      allowNull: false,
       allowNull: true,
     },
     genre: {
@@ -48,17 +44,14 @@ Event.init(
     },
     date: {
       type: Sequelize.DataTypes.DATE,
-      // allowNull: false,
-      allowNull: true,
+      allowNull: false,
     },
     time: {
       type: Sequelize.DataTypes.TIME,
-      // allowNull: false,
-      allowNull: true,
+      allowNull: false,
     },
     notificationDate: {
       type: Sequelize.DataTypes.DATE,
-      // allowNull: false,
       allowNull: true,
     },
     notificationTime: {

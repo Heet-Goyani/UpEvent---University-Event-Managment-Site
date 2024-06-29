@@ -42,7 +42,7 @@ export const login = async (req, res) => {
 
 export const register = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, name, about } = req.body;
     const old = await Organiser.findOne({
       where: { email },
     });
@@ -52,6 +52,8 @@ export const register = async (req, res) => {
     const newUser = await Organiser.create({
       email,
       password,
+      name,
+      about
     });
     const token = jwt.sign(
       {
@@ -62,7 +64,7 @@ export const register = async (req, res) => {
       },
       process.env.JWT_SECRET
     );
-    delete newUser.password;
+    delete newUser.dataValues.password;
     return res.status(201).json({ token, organiser: newUser });
   } catch (error) {
     console.log(error);
