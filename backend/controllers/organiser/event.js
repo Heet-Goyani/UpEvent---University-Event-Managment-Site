@@ -119,4 +119,36 @@ const updateEvent = async (req, res) => {
   }
 };
 
-export { createEvent, updateEvent };
+const deleteEvent = async (req, res) => {
+  try {
+    const findEvent = await Event.findOne({
+      where: { id: req.params.id, organiserId: req.user.id },
+    });
+
+    if (!findEvent) {
+      return res.status(404).json({ message: "Event not found" });
+    }
+
+    const event = await Event.destroy({ where: { id: req.params.id } });
+    if (!event) return res.status(400).json({ message: "Event not deleted" });
+    return res.status(200).json({ message: "Event deleted successfully" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: error.message });
+  }
+}
+
+const getEvents = async (req, res) => {
+  try {
+    const events = await Event.findAll({
+      where: { organiserId: req.user.id },
+    });
+    if (!events) return res.status(400).json({ message: "Events not found" });
+    return res.status(200).json({ events });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export { createEvent, updateEvent, deleteEvent, getEvents };
