@@ -138,4 +138,17 @@ const deleteEvent = async (req, res) => {
   }
 }
 
-export { createEvent, updateEvent, deleteEvent };
+const getEvents = async (req, res) => {
+  try {
+    const events = await Event.findAll({
+      where: { organiserId: req.user.id },
+    });
+    if (!events) return res.status(400).json({ message: "Events not found" });
+    return res.status(200).json({ events });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export { createEvent, updateEvent, deleteEvent, getEvents };
