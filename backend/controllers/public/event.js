@@ -1,5 +1,5 @@
 import { QueryTypes } from "sequelize";
-import { sequelize } from "../../db/connection.js";// Controller imports
+import { sequelize } from "../../db/connection.js"; // Controller imports
 
 // Middleware imports
 
@@ -52,4 +52,28 @@ const getEvent = async (req, res) => {
   }
 };
 
-export { getEventList, getEvent };
+const getEventListByOrganiser = async (req, res) => {
+  try {
+    const organiser = await Organiser.findOne({
+      where: {
+        name: req.body.name,
+      },
+    });
+    if (!organiser)
+      return res.status(404).json({ message: "No such organiser found" });
+
+    const events = await Event.findAll({
+      where: {
+        organiserId: organiser.id,
+      },
+    });
+
+    if (!events) return res.status(404).json({ message: "No events found" });
+    return res.status(200).json({ events: events });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export { getEventList, getEvent, getEventListByOrganiser };
