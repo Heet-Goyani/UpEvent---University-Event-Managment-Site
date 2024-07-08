@@ -2,7 +2,7 @@ import { Router } from "express";
 const router = Router();
 
 // Controller imports
-import { createEvent, updateEvent } from "../../controllers/organiser/event.js";
+import { createEvent, updateEvent, deleteEvent } from "../../controllers/organiser/event.js";
 
 // Middleware imports
 import isOrganiser from "../../middlewares/auth/isOrganiser.js";
@@ -11,5 +11,6 @@ import isOrganiser from "../../middlewares/auth/isOrganiser.js";
 
 router.post("/event/create", isOrganiser, createEvent);
 router.patch("/event/update/:id", isOrganiser, updateEvent);
+router.delete("/event/delete/:id", isOrganiser, deleteEvent);
 
 export default router;
