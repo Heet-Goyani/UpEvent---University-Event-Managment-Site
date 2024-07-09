@@ -1,0 +1,49 @@
+.notFound {
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 50%;
+            min-width: 280px;
+            margin-bottom: 20px;
+        }
+    }
+
+    .text1 {
+        font-size: 2.25rem;
+        font-family: Bold;
+        margin: 20px 0;
+    }
+
+    .text2 {
+        color: rgba(0,0,0,0.5);
+        font-size: 1.25rem;
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .back-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: '0';
+        padding: 10px 0; 
+        border-radius: 150px;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .notFound {
+        .text1 {
+            font-size: 1.75rem;
+        }
+        
+        .text2 {
+            font-size: 1rem;
+        }
+    }
+}

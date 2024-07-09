@@ -48,8 +48,11 @@ const Header = () => {
                             <a className="dropdown-item" href="#">
                                 <i className="bi bi-person"></i> Profile
                             </a>
-                            <a className="dropdown-item" href="#">
+                            <a className="dropdown-item" href="/bookmarks">
                                 <i className="bi bi-bookmarks"></i> Bookmarks
+                            </a>
+                            <a className="dropdown-item" href="/registered-events">
+                                <i className="bi bi-calendar4-event"></i> Events
                             </a>
                             <div className="dropdown-divider"></div>
                             <a className="dropdown-item" href="/" onClick={() => {

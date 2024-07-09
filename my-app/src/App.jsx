@@ -9,7 +9,10 @@ import Home from './pages/home';
 import Event from './pages/event';
 import Register from './pages/register';
 import Login from './pages/login';
+import Bookmarks from './pages/bookmarkedEvents';
+import RegisteredEvents from './pages/registeredEvents';
 import Organiser from './pages/organiser';
+import NotFound from './pages/notFound';
 
 const App = () => {
   return (
@@ -22,6 +25,9 @@ const App = () => {
         <Route path="/user-login" element={<Login user={true} />} />
         <Route path="/organiser-register" element={<Register user={false} />} />
         <Route path="/organiser-login" element={<Login user={false} />} />
+        <Route path='/bookmarks' element={<Bookmarks />} />
+        <Route path='/registered-events' element={<RegisteredEvents />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

@@ -104,7 +104,7 @@ const Event = () => {
                     {
                         (event?.instagram || event?.facebook || event?.linkedin || event?.twitter) && (
                             <div className='adjacent-box'>
-                                <div className='event-cont-heading'>Reach us at:</div>
+                                <div className='event-cont-heading pr-2'>Reach us at:</div>
                                 {event?.instagram && <a href={event?.instagram} target='_blank' rel='noreferrer'><img src={images.instagram} alt="instagram" className='social-icons' /></a>}
                                 {event?.facebook && <a href={event?.facebook} target='_blank' rel='noreferrer'><img src={images.facebook} alt="facebook" className='social-icons' /></a>}
                                 {event?.linkedin && <a href={event?.linkedin} target='_blank' rel='noreferrer'><img src={images.linkedin} alt="linkedin" className='social-icons' /></a>}
@@ -124,7 +124,7 @@ const Event = () => {
                             {/* <Map address={address} /> */}
                         </div>
                         <div className='pt-3'>
-                            <div className='event-cont-heading'>Share with friends</div>
+                            <div className='event-cont-heading pb-2'>Share with friends</div>
                             <div className='share-icons'>
                                 <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} target='_blank' rel='noreferrer'>
                                     <img src={images.facebook} alt="facebook" className='social-icons m-0 mr-2' />
