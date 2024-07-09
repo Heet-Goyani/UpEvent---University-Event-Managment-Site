@@ -30,3 +30,19 @@ export const checkRegistration = async (eventID, userToken) => {
         console.log('Error in checking Registration of Eveent:', err);
     }
 };
+
+export const getAllRegistrations = async (userToken) => {
+    try {
+        const response = await fetch(`${API.BASE_URL}${API.REGISTERED_EVENTS}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${userToken}`,
+            },
+        });
+        const data = await response.json();
+        return data;
+    } catch (err) {
+        console.log('Error in getting all user registrations:', err);
+    }
+};

@@ -144,10 +144,11 @@ const Event = () => {
                     </div>
                 </div>
             </div>
-            <div className='other-events px-2 px-md-3 px-lg-5'>
-                {
-                    organiserEvents?.length > 0 ? <>
+            {
+                organiserEvents?.length > 0 && <>
+                    <div className='other-events px-2 px-md-3 px-lg-5'>
                         <div className='other-events-heading'>Other events you may like from <span style={{ color: 'var(--primary)' }}>{event?.organiserCollege}</span></div>
+
                         <div className='other-events-cont'>
                             {
                                 organiserEvents?.map((event, index) => (
@@ -155,11 +156,9 @@ const Event = () => {
                                 ))
                             }
                         </div>
-                    </> : <>
-                        <div className='not-available-cont'>No events available</div>
-                    </>
-                }
-            </div>
+                    </div>
+                </>
+            }
             <Footer />
         </div>
     )

@@ -27,6 +27,7 @@ const Header = () => {
 
     useEffect(() => {
         if(userToken !== null && userData !== null) {
+            console.log('User is logged in');
             setIsLoggedIn(true);
         }
         console.log(userToken, userData);
@@ -55,11 +56,12 @@ const Header = () => {
                                 <i className="bi bi-calendar4-event"></i> Events
                             </a>
                             <div className="dropdown-divider"></div>
-                            <a className="dropdown-item" href="/" onClick={() => {
+                            <div className="dropdown-item" href="/" onClick={() => {
                                 dispatch(logOut());
+                                navigate('/user-login', { replace: true });
                             }}>
                                 <i className="bi bi-box-arrow-right"></i> Log Out
-                            </a>
+                            </div>
                         </div>
                     </div>
                 ) : (

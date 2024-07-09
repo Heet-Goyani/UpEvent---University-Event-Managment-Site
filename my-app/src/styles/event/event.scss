@@ -17,12 +17,12 @@
     justify-content: flex-start;
     /* side margin 1 */
     padding: 0 8.34vw;
+    margin-bottom: 1vmax;
 
     .event-left-cont {
         width: 50%;
         display: flex;
         flex-direction: column;
-        // padding: 0 1vmax;
     }
 
     .event-right-cont {
@@ -77,6 +77,6 @@
         font-family: Bold;
         font-size: 1.75rem;
         color: var(--black);
-        margin: 2vmax 1vmax;
+        margin: 1vmax 1vmax 2vmax 1vmax;
     }
 }

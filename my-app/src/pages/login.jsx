@@ -49,12 +49,12 @@ const LogIn = ({ user }) => {
                     if(user){
                         dispatch(updateUser({ userToken: response.token, userData: response.user }));
                         setTimeout(() => {
-                            navigate('/');
+                            navigate('/', { replace: true });
                         }, 1000);
                     } else {
                         dispatch(updateOrganiser({ organiserToken: response.token, organiserData: response.organiser }));
                         setTimeout(() => {
-                            navigate('/dashboard');
+                            navigate('/dashboard', { replace: true });
                         }, 1000);
                     }
                 } else {

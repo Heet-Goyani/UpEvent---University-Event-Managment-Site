@@ -20,7 +20,7 @@ export const API = {
     // event
     'EVENTS': '/event/list',
     'BOOKMARKED_EVENTS': '/user/bookmarkedevents', 
-    'REGISTERED_EVENTS': '/user/registerevent',
+    'REGISTERED_EVENTS': '/user/registeredevents',
     'CHECK_BOOKMARK': '/user/isbookmarked',
     'CHECK_REGISTERED': '/user/isregistered',
     'REGISTER_EVENT': '/user/registerevent',

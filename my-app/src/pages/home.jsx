@@ -11,6 +11,7 @@ import Header from '../components/common/header';
 import Banner from '../components/home/banner';
 import Footer from '../components/common/footer';
 import Card from '../components/common/card';
+import Filter from '../components/common/filter';
 import CollegeCard from '../components/home/collegeCard';
 import Loader from '../components/common/loader';
 
@@ -79,10 +80,10 @@ const Home = () => {
                 setloading(true);
                 let data = [];
                 if (userToken) {
-                    console.log('userToken access. USER EVENTS API');
+                    console.log('userToken access. Go for USER EVENTS API');
                     data = await getUserEvents(userToken);
                 } else {
-                    console.log('No userToken access. PUBLIC EVENTS API');
+                    console.log('No userToken access. Go for PUBLIC EVENTS API');
                     data = await getPublicEvents();
                 }
                 setEvents(data?.events);
@@ -131,10 +132,7 @@ const Home = () => {
                 <section id='upcoming'>
                     <div className='header'>
                         <div className='heading-p1'>Famous <span className='heading-p2'>Events</span></div>
-                        <button className='btn btn-fill btn-filter'>
-                            <img src={images.filter} alt="filter" className='filter-icon' />
-                            <span>Filter</span>
-                        </button>
+                        <Filter />
                     </div>
                     {
                         loading ? (

@@ -62,7 +62,7 @@ const CollegeCard = () => {
                             <div className="card-body">
                                 <div className="sub-container">
                                     <div className="card-title">
-                                        <img src={images.college} alt="college" />
+                                        <i className="bi bi-mortarboard"></i>
                                         <div>{college.name}</div>
                                     </div>
                                     <div className="card-rating">
@@ -72,7 +72,7 @@ const CollegeCard = () => {
                                 </div>
                                 <div className="sub-container">
                                     <div className="card-text">
-                                        <img src={images.location} alt="location" />
+                                        <i className="bi bi-pin-map"></i>
                                         <div>{college.city}, {college.state}</div>
                                     </div>
                                 </div>

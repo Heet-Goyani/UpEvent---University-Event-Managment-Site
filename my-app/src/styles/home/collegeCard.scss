@@ -70,9 +70,10 @@
                     color: #383838;
                     margin-bottom: 0;
 
-                    img {
-                        width: 26px;
-                        height: 26px;
+                    i {
+                        font-size: 1.75rem;
+                        color: #BBA3F9;
+                        padding-right: 10px;
                     }
 
                     div {
@@ -104,9 +105,10 @@
                     font-size: 0.9rem;
                     color: var(--gray-600);
 
-                    img {
-                        width: 24px;
-                        height: 24px;
+                    i {
+                        font-size: 1.5rem;
+                        color: #BBA3F9;
+                        padding-right: 12px;
                     }
                 }
             }

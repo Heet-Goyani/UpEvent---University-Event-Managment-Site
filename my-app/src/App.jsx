@@ -9,8 +9,8 @@ import Home from './pages/home';
 import Event from './pages/event';
 import Register from './pages/register';
 import Login from './pages/login';
-import Bookmarks from './pages/bookmarkedEvents';
-import RegisteredEvents from './pages/registeredEvents';
+import Bookmarks from './pages/allBookmarks';
+import RegisteredEvents from './pages/allRegistrations';
 import Organiser from './pages/organiser';
 import NotFound from './pages/notFound';
 
