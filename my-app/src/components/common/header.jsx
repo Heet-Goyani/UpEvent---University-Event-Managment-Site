@@ -14,15 +14,15 @@ import { logOut } from '../../redux/slices/userSlice';
 const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { userToken, userData } = useSelector(state => state.user);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { userToken, userData } = useSelector(state => state.user);
 
     const handleLogin = () => {
-        navigate('/login');
+        navigate('/user-login');
     };
 
     const handleSignup = () => {
-        navigate('/register');
+        navigate('/user-register');
     };
 
     useEffect(() => {
@@ -42,14 +42,14 @@ const Header = () => {
                 isLoggedIn ? (
                     <div className="profile-section">
                         <a className="profile-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src={userData.profilePic} className="profile" alt="Profile" />
+                            <img src={images.defaultProfile} className="profile" alt="Profile" />
                         </a>
                         <div className="dropdown-menu dropdown-menu-right profile-dropdown" aria-labelledby="navbarDropdownMenuLink">
                             <a className="dropdown-item" href="#">
                                 <i className="bi bi-person"></i> Profile
                             </a>
                             <a className="dropdown-item" href="#">
-                                <i className="bi bi-bookmark"></i> Bookmarks
+                                <i className="bi bi-bookmarks"></i> Bookmarks
                             </a>
                             <div className="dropdown-divider"></div>
                             <a className="dropdown-item" href="/" onClick={() => {

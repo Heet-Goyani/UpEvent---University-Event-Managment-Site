@@ -18,6 +18,9 @@ import Loader from '../components/common/loader';
 import { getUserEvents } from '../utils/home/userEvents';
 import { getPublicEvents } from '../utils/home/publicEvents';
 
+// navigate
+import { useNavigate } from 'react-router-dom';
+
 // react-redux
 import { useSelector } from 'react-redux';
 
@@ -29,6 +32,8 @@ const Home = () => {
     const [visibleEvents, setVisibleEvents] = useState(3);
     const [visibleUpcomingEvents, setVisibleUpcomingEvents] = useState(3);
     const [loading, setloading] = useState(false);
+
+    const navigate = useNavigate();
 
     const { userToken } = useSelector(state => state.user);
 
@@ -115,6 +120,7 @@ const Home = () => {
                         <div className='emphasis-heading'>Join us and organise your college events!</div>
                         <div className='button-container'>
                             <button className='btn btn-fill' onClick={() => {
+                                navigate('/organiser-register');
                                 console.log('Organize Events');
                             }}>Organize Events</button>
                         </div>
@@ -133,7 +139,7 @@ const Home = () => {
                     {
                         loading ? (
                             <div className='loader-container'>
-                                <Loader width={'60px'} borderWidth={'6px'} />
+                                <Loader width={'60px'} borderWidth={'6px'} color={'var(--primary)'} />
                             </div>
                         ) : (
                             <div className='events-content'>
@@ -143,7 +149,7 @@ const Home = () => {
                                             <Card key={index} event={event} />
                                         ))}
                                         {visibleEvents < events.length && (
-                                            <button className='btn btn-fill' style={{ marginTop: '10px' }} onClick={loadMorePublicEvents}>Load More...</button>
+                                                <button className='btn btn-fill d-flex align-self-center align-items-center' style={{ marginTop: '10px' }} onClick={loadMorePublicEvents}>Load More...</button>
                                         )}
                                     </>
                                 ) : (
@@ -167,7 +173,7 @@ const Home = () => {
                                 {
                                     loading ? (
                                         <div className='loader-container'>
-                                            <Loader width={'60px'} borderWidth={'6px'} />
+                                            <Loader width={'60px'} borderWidth={'6px'} color={'var(--primary)'} />
                                         </div>
                                     ) : (
                                         <div className='events-content'>
@@ -177,7 +183,7 @@ const Home = () => {
                                                         <Card key={index} event={event} />
                                                     ))}
                                                     {visibleUpcomingEvents < upcomingEvents.length && (
-                                                        <button className='btn btn-fill' style={{ marginTop: '10px' }} onClick={loadMoreUpcomingEvents}>Load More...</button>
+                                                        <button className='btn btn-fill d-flex align-self-center align-items-center' style={{ marginTop: '10px' }} onClick={loadMoreUpcomingEvents}>Load More...</button>
                                                     )}
                                                 </>
                                             ) : (

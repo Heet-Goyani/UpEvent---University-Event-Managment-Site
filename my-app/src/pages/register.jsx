@@ -10,7 +10,8 @@ import { images } from "../assets/images";
 import { colleges } from "../data/colleges";
 
 // utils
-import { userRegister, ValidateRegisterData } from "../utils/auth/userRegister";
+import { userRegister, ValidateRegisterData as ValidateUserRegisterData } from "../utils/auth/userRegister";
+import { organiserRegister, ValidateRegisterData as ValidateOrganiserRegisterData } from "../utils/auth/organiserRegister";
 
 // navigation
 import { useNavigate } from "react-router-dom";
@@ -21,8 +22,9 @@ import Loader from "../components/common/loader";
 // redux
 import { useDispatch } from "react-redux";
 import { updateUser } from "../redux/slices/userSlice";
+import { updateOrganiser } from "../redux/slices/organiserSlice";
 
-const Register = () => {
+const Register = ({ user }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -33,12 +35,16 @@ const Register = () => {
     const [selectedCollege, setSelectedCollege] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [about, setAbout] = useState('');
     const [inProcess, setInProcess] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
+    const [filterText, setFilterText] = useState('');
 
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target) && !inputRef.current.contains(event.target)) {
+                setFilterText('');
+                console.log('click outside: ', filterText, selectedCollege);
                 setShowDropdown(false);
             }
         };
@@ -52,17 +58,22 @@ const Register = () => {
         setShowDropdown(!showDropdown);
     };
 
-    const handleRegister = (e) => {
+    const filteredColleges = colleges.filter(college =>
+        college.name.toLowerCase().includes(filterText.toLowerCase())
+    );
+
+    const handleUserRegister = (e) => {
         e.preventDefault();
         (async () => {
             try {
                 setInProcess(true);
-                const { isValid, error } = ValidateRegisterData(name, selectedCollege, email, password);
+                const { isValid, error } = ValidateUserRegisterData(name, selectedCollege, email, password);
                 if (isValid === false) {
                     toast.error(error);
                     setInProcess(false);
                     return;
                 }
+                
                 const response = await userRegister(name, selectedCollege, email, password);
                 if (response && response.token) {
                     toast.success('Registered successful!');
@@ -81,18 +92,52 @@ const Register = () => {
         })();
     }
 
+    const handleOrganiserRegister = (e) => {
+        e.preventDefault();
+        (async () => {
+            try {
+                setInProcess(true);
+                const { isValid, error } = ValidateOrganiserRegisterData(selectedCollege, email, password, about);
+                if (isValid === false) {
+                    toast.error(error);
+                    setInProcess(false);
+                    return;
+                }
+
+                const response = await organiserRegister(selectedCollege, email, password, about);
+                if (response && response.token) {
+                    toast.success('Registered successful!');
+                    dispatch(updateOrganiser({ userToken: response.token, userData: response.user }))
+                    setTimeout(() => {
+                        navigate('/dashboard');
+                    }, 1000);
+                } else {
+                    toast.error(response.message);
+                }
+            } catch (error) {
+                toast.error('Registration error! Try again later!');
+            } finally {
+                setInProcess(false);
+            }
+        })();
+    }
+
     return (
         <div className="container-fluid" id="register">
             <div><Toaster /></div>
-            <img loading="lazy" src={images.register_cover} alt="Cover Image" className="cover-img" />
+            <img loading="lazy" src={user ? images.register_cover : images.register_cover2} alt="Cover Image" className="cover-img" />
             <div className="right-portion">
                 <div className="title">Up<span className="p2">Event</span></div>
-                <div className="heading">Create an Account</div>
+                <div className="heading">{user ? 'Create an Account' : 'Organiser Register Portal'}</div>
                 <form style={{ marginTop: '40px' }}>
-                    <div className="form-group">
-                        <label htmlFor="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Enter your name" autoComplete="true" onChange={(e) => setName(e.target.value)} />
-                    </div>
+                    {
+                        user && (
+                            <div className="form-group">
+                                <label htmlFor="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your name" autoComplete="true" onChange={(e) => setName(e.target.value)} />
+                            </div>
+                        )
+                    }
                     <div className="form-group">
                         <label htmlFor="college">College</label>
                         <div className="input-container">
@@ -103,19 +148,24 @@ const Register = () => {
                                 id="college"
                                 name="college"
                                 placeholder="Choose your college"
-                                readOnly
+                                // readOnly
                                 onClick={toggleDropdown}
-                                value={selectedCollege || ''}
+                                onChange={(e) => {
+                                    setFilterText(e.target.value);
+                                    setShowDropdown(true);
+                                }}
+                                value={filterText}
                             />
                             <i className="bi bi-chevron-down dropdown-icon"></i>
                             {showDropdown && (
                                 <div ref={dropdownRef} className="custom-dropdown">
-                                    {colleges.map((college) => (
+                                    {filteredColleges.sort((a, b) => a.name.localeCompare(b.name)).map((college, index) => (
                                         <div
                                             className="dropdown-item"
-                                            key={college.name}
+                                            key={index}
                                             onClick={() => {
                                                 setSelectedCollege(college.name);
+                                                setFilterText(college.name);
                                                 setShowDropdown(false);
                                             }}
                                         >
@@ -134,6 +184,21 @@ const Register = () => {
                         <label htmlFor="password">Password</label>
                         <input type="password" id="password" name="password" placeholder="Enter your password" autoComplete="true" onChange={(e) => setPassword(e.target.value)} />
                     </div>
+                    {
+                        !user && (
+                            <div className="form-group">
+                                <label htmlFor="about">About College</label>
+                                <textarea
+                                    type="text"
+                                    id="about"
+                                    name="about"
+                                    placeholder="Write about your college"
+                                    onChange={(e) => setAbout(e.target.value)}
+                                    style={{ maxHeight: '5em', minHeight: '5em' }} 
+                                />
+                            </div>
+                        )
+                    }
                     <div className="form-group">
                         {
                             inProcess ? (
@@ -141,12 +206,12 @@ const Register = () => {
                                     <Loader width={'24px'} borderWidth={'2px'} />
                                 </div>
                             ) : (
-                                <button type="submit" className="btn btn-fill" onClick={handleRegister}>Register</button>
+                                <button type="submit" className="btn btn-fill" onClick={user ? handleUserRegister : handleOrganiserRegister}>Register</button>
                             )
                         }
                     </div>
                 </form>
-                <div>Already have an account? <Link to={'/login'}>
+                <div>Already have an account? <Link to={user ? '/user-login' : '/organiser-login'}>
                     <span className="p2" style={{ fontFamily: 'Bold', cursor: 'pointer' }}>Log in</span>
                 </Link>
                 </div>

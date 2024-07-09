@@ -96,14 +96,14 @@
     cursor: pointer;
 } */
 
-.form-group input {
+.form-group input , textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
 }
 
-.form-group input:focus {
+.form-group input:focus, textarea:focus {
     outline: none;
     border: 1px solid var(--primary);
     box-shadow: rgba(120, 72, 244, 0.3) 0px 0px 6px;

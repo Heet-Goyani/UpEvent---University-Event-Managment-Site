@@ -33,7 +33,7 @@
         box-shadow: var(--gray-300) 0 0 2px;
         border-radius: 10px !important;
 
-        img {
+        .img-cont {
             border-radius: 5px 5px 0 0;
             width: 100%;
             height: 300px;
@@ -145,7 +145,7 @@
             width: 55%;
             margin-right: 15px;
 
-            img {
+            .img-cont {
                 height: 250px;
             }
 

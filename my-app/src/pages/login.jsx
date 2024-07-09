@@ -10,6 +10,7 @@ import { images } from "../assets/images";
 
 // utils
 import { userLogin, ValidateLoginData } from "../utils/auth/userLogin";
+import { organiserLogin } from "../utils/auth/organiserLogin";
 
 // navigation
 import { useNavigate } from "react-router-dom";
@@ -20,8 +21,9 @@ import Loader from "../components/common/loader";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../redux/slices/userSlice";
+import { updateOrganiser } from "../redux/slices/organiserSlice";
 
-const LogIn = () => {
+const LogIn = ({ user }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [forgotPassword, setForgotPassword] = useState(false);
@@ -41,13 +43,20 @@ const LogIn = () => {
                     setInProcess(false);
                     return;
                 }
-                const response = await userLogin(email, password);
+                const response = user ? await userLogin(email, password) : await organiserLogin(email, password);
                 if (response && response.token) {
                     toast.success('Login successful!');
-                    dispatch(updateUser({ userToken: response.token, userData: response.user }))
-                    setTimeout(() => {
-                        navigate('/');
-                    }, 1000);
+                    if(user){
+                        dispatch(updateUser({ userToken: response.token, userData: response.user }));
+                        setTimeout(() => {
+                            navigate('/');
+                        }, 1000);
+                    } else {
+                        dispatch(updateOrganiser({ organiserToken: response.token, organiserData: response.organiser }));
+                        setTimeout(() => {
+                            navigate('/dashboard');
+                        }, 1000);
+                    }
                 } else {
                     toast.error(response.message);
                 }
@@ -62,7 +71,6 @@ const LogIn = () => {
 
     const handleForgotPassword = (e) => {
         e.preventDefault();
-        // console.log('Forgot Password', email);
         setEmail('');
         setForgotPassword(false);
     };
@@ -70,7 +78,7 @@ const LogIn = () => {
     return (
         <div className="container-fluid" id="signin">
             <div><Toaster /></div>
-            <img loading="lazy" src={images.signin_cover} alt="Cover Image" className="cover-img" />
+            <img loading="lazy" src={user ? images.signin_cover : images.signin_cover2} alt="Cover Image" className="cover-img" />
             <div className="right-portion">
                 {
                     forgotPassword && (
@@ -83,7 +91,7 @@ const LogIn = () => {
                     )
                 }
                 <div className="title">Up<span className="p2">Event</span></div>
-                <div className="heading">{forgotPassword ? 'Recover your Password' : 'Log In to UpEvent'}</div>
+                <div className="heading">{forgotPassword ? 'Recover your Password' : user ? 'Log In to UpEvent' : 'Organiser Login Portal'}</div>
                 {
                     forgotPassword && (
                         <div className="sub-heading">Enter the email that you used when register to recover your password. You will receive a password reset link.</div>
@@ -162,7 +170,7 @@ const LogIn = () => {
                             )
                     }
                 </form>
-                <div>Don't you have an account? <Link to={'/register'}>
+                <div>Don't you have an account? <Link to={user ? '/user-register' : '/organiser-register'}>
                     <span className="p2" style={{ fontFamily: 'Bold', cursor: 'pointer' }}>Register</span>
                 </Link>
                 </div>
