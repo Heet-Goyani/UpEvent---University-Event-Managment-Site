@@ -33,11 +33,15 @@ Event.init(
     },
     genre: {
       type: Sequelize.DataTypes.ENUM(
-        "technical",
-        "cultural",
-        "literary",
-        "sports",
-        "other"
+        "Technical",
+        "Cultural",
+        "Sports",
+        "Educational",
+        "Social",
+        "Business",
+        "Health and Wellness",
+        "Charity",
+        "Other"
       ),
       allowNull: false,
       defaultValue: "other",
