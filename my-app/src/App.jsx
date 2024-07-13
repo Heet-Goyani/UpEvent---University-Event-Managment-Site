@@ -11,7 +11,7 @@ import Register from './pages/register';
 import Login from './pages/login';
 import Bookmarks from './pages/allBookmarks';
 import RegisteredEvents from './pages/allRegistrations';
-import Organiser from './pages/organiser';
+import Dashboard from './pages/organiser/dashboard';
 import NotFound from './pages/notFound';
 
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route index path='/' element={<Home />} />
-        <Route path="/dashboard" element={<Organiser />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/event/:id" element={<Event />} />
         <Route path="/user-register" element={<Register user={true} />} />
         <Route path="/user-login" element={<Login user={true} />} />

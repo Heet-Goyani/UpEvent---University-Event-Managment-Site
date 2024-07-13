@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // styles
 import '../styles/home/home.css';
@@ -10,10 +10,10 @@ import { images } from '../assets/images';
 import Header from '../components/common/header';
 import Banner from '../components/home/banner';
 import Footer from '../components/common/footer';
-import Card from '../components/common/card';
-import Filter from '../components/common/filter';
 import CollegeCard from '../components/home/collegeCard';
 import Loader from '../components/common/loader';
+import FamousEventsList from '../components/home/famousEventsList';
+import UpcomingEventsList from '../components/home/upcomingEventsList';
 
 // utils
 import { getUserEvents } from '../utils/home/userEvents';
@@ -26,18 +26,33 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Home = () => {
-    const [bgTop, setBgTop] = useState(images.bgTop);
-    const [bgLeft, setBgLeft] = useState(images.bgLeft);
-    const [events, setEvents] = useState([]);
-    const [upcomingEvents, setUpcomingEvents] = useState([]);
-    const [visibleEvents, setVisibleEvents] = useState(3);
-    const [visibleUpcomingEvents, setVisibleUpcomingEvents] = useState(3);
-    const [loading, setloading] = useState(false);
+    // global states
+    const { userToken } = useSelector(state => state.user);
+    const { organiserToken } = useSelector(state => state.organiser);
 
+    // navigate
     const navigate = useNavigate();
 
-    const { userToken } = useSelector(state => state.user);
+    // UI states
+    const [bgTop, setBgTop] = useState(images.bgTop);
+    const [bgLeft, setBgLeft] = useState(images.bgLeft);
+    const [loadPage, setLoadPage] = useState(true);
 
+    // famous events states
+    const [events, setEvents] = useState([]);                               // public events
+    const [loading, setLoading] = useState(false);                          // loading state for list 1
+
+    // upcoming events states
+    const [upcomingEvents, setUpcomingEvents] = useState([]);               // upcoming events
+    const [loading2, setLoading2] = useState(false);                        // loading state for list 2
+
+    useEffect(() => {
+        if(organiserToken !== null) {
+            navigate('/dashboard');
+        }
+    }, [organiserToken])
+
+    // set background images based on screen size
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth > 480) {
@@ -56,28 +71,27 @@ const Home = () => {
         };
     }, []);
 
+    // function to filter public events into upcoming events
     const handleUpcomingData = (events) => {
         const upcoming = events.filter(event => {
-            // Dates
             const currentDate = new Date();
             const eventDate = new Date(event.date);
-
-            // Time
             const currentTime = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
             const eventTime = event.time;
 
             if (eventDate > currentDate) return true;
             else if (currentDate === eventDate && eventTime > currentTime) return true;
-
             return false;
         });
         setUpcomingEvents(upcoming);
     };
 
+    // fetch public events and upcoming events
     useEffect(() => {
         (async () => {
             try {
-                setloading(true);
+                setLoading(true);
+                setLoading2(true);
                 let data = [];
                 if (userToken) {
                     console.log('userToken access. Go for USER EVENTS API');
@@ -91,21 +105,23 @@ const Home = () => {
             } catch (error) {
                 console.log('Error in fetching public events', error);
             } finally {
-                setloading(false);
+                setLoading(false);
+                setLoading2(false);
             }
         })();
     }, []);
 
+    useEffect(() => {
+        setTimeout(() => {
+            setLoadPage(false);
+        }, 1000);
+    }, [events, upcomingEvents]);
 
-    const loadMorePublicEvents = () => {
-        setVisibleEvents(prev => Math.min(prev + 3, events.length));
-    };
-
-    const loadMoreUpcomingEvents = () => {
-        setVisibleUpcomingEvents(prev => Math.min(prev + 3, events.length));
-    }
-
-    return (
+    return loadPage ? (
+        <div className='d-flex justify-content-center align-items-center' style={{ width: '100vw', height: '100vh' }}>
+            <Loader width={'80px'} borderWidth={'8px'} color={'var(--primary)'} />
+        </div>
+    ) : (
         <>
             <div className='main'>
                 {/* Backgrounds */}
@@ -130,68 +146,11 @@ const Home = () => {
 
                 {/* section */}
                 <section id='upcoming'>
-                    <div className='header'>
-                        <div className='heading-p1'>Famous <span className='heading-p2'>Events</span></div>
-                        <Filter />
-                    </div>
-                    {
-                        loading ? (
-                            <div className='loader-container'>
-                                <Loader width={'60px'} borderWidth={'6px'} color={'var(--primary)'} />
-                            </div>
-                        ) : (
-                            <div className='events-content'>
-                                {events?.length > 0 ? (
-                                    <>
-                                        {events.slice(0, visibleEvents).map((event, index) => (
-                                            <Card key={index} event={event} />
-                                        ))}
-                                        {visibleEvents < events.length && (
-                                                <button className='btn btn-fill d-flex align-self-center align-items-center' style={{ marginTop: '10px' }} onClick={loadMorePublicEvents}>Load More...</button>
-                                        )}
-                                    </>
-                                ) : (
-                                    <div className='no-events'>No events available</div>
-                                )}
-                            </div>
-                        )
-                    }
+                    <FamousEventsList loading={loading} setLoading={setLoading} events={events} />
                     <Banner />
                     <CollegeCard />
                     {
-                        userToken && (
-                            <>
-                                <div className='header'>
-                                    <div className='heading-p1'>Upcoming <span className='heading-p2'>Events</span></div>
-                                    <button className='btn btn-fill btn-filter'>
-                                        <img src={images.filter} alt="filter" className='filter-icon' />
-                                        <span>Filter</span>
-                                    </button>
-                                </div>
-                                {
-                                    loading ? (
-                                        <div className='loader-container'>
-                                            <Loader width={'60px'} borderWidth={'6px'} color={'var(--primary)'} />
-                                        </div>
-                                    ) : (
-                                        <div className='events-content'>
-                                            {upcomingEvents?.length > 0 ? (
-                                                <>
-                                                    {upcomingEvents.slice(0, visibleUpcomingEvents).map((event, index) => (
-                                                        <Card key={index} event={event} />
-                                                    ))}
-                                                    {visibleUpcomingEvents < upcomingEvents.length && (
-                                                        <button className='btn btn-fill d-flex align-self-center align-items-center' style={{ marginTop: '10px' }} onClick={loadMoreUpcomingEvents}>Load More...</button>
-                                                    )}
-                                                </>
-                                            ) : (
-                                                <div className='no-events'>No events available</div>
-                                            )}
-                                        </div>
-                                    )
-                                }
-                            </>
-                        )
+                        userToken && <UpcomingEventsList loading={loading2} setLoading={setLoading2} events={upcomingEvents} />
                     }
                     <Footer />
                 </section>

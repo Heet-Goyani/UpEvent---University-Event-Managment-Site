@@ -11,7 +11,7 @@ import Loader from "../common/loader";
 import '../../styles/event/banner.scss';
 
 // utils
-import { handleDate, handleTime } from "../../utils/common/format";
+import { handleDate, handleTime, mergeDateAndTime } from "../../utils/common/format";
 import { eventBookmark, checkBookmark } from "../../utils/event/bookmark";
 import { registerEvent, checkRegistration } from '../../utils/event/register';
 
@@ -115,14 +115,6 @@ const EventBanner = (props) => {
         }
     }
 
-    const mergeDateAndTime = (dateString, timeString) => {
-        const date = new Date(dateString);
-
-        const formattedDate = `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
-        const formattedTime = timeString.replace(/:/g, '');
-
-        return `${formattedDate}T${formattedTime}`;
-    };
     const handleAddToCalendar = () => {
         try {
             const title = encodeURIComponent(props?.name);
@@ -138,8 +130,7 @@ const EventBanner = (props) => {
     };
 
     return (
-        // add this  -> props?.coverImage || in backgroundImage after you are done testing
-        <div className="event-banner-container" style={{ backgroundImage: `url("https://images.unsplash.com/photo-1674574124345-02c525664b65?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")` }}>
+        <div className="event-banner-container" style={{ backgroundImage: `url(${props?.coverImage})` }}>
             <div><Toaster /></div>
             <div className="description-box">
                 <div className='btnBox mb-5 mt-4'>
@@ -154,7 +145,7 @@ const EventBanner = (props) => {
                         <span className="p-2">Back</span>
                     </button>
                 </div>
-                <div className="name mt-5">{props?.name}</div>
+                <div className="name">{props?.name}</div>
                 <div className="organiser">{props?.organiserCollege}</div>
                 <div className="desc mb-auto pr-2">{props?.description}</div>
             </div>

@@ -11,11 +11,12 @@ export const API = {
     // organiser
     'REGISTER_ORGANISER': '/organiser/auth/register',
     'LOGIN_ORGANISER': '/organiser/auth/login',
-    'ORGANISER_EVENTS': '/organiser/events',
-    'ADD_EVENT': '/organiser/event/create',
     'GET_LOGGED_IN_ORGANISER': '/organiser',
     'UPDATE_ORGANISER': '/organiser',             // patch request
-    'UPDATE_EVENT': '/organiser/event/update/id', // id is variable here, (patch request)
+    'ORGANISER_EVENTS': '/organiser/events',
+    'CREATE_EVENT': '/organiser/event/create',
+    'DELETE_EVENT': '/organiser/event/delete',    // id is variable here, (delete request)
+    'UPDATE_EVENT': '/organiser/event/update',    // id is variable here, (patch request)
     
     // event
     'EVENTS': '/event/list',

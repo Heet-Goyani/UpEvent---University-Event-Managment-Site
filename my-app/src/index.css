@@ -6,6 +6,7 @@
 
 :root {
   --primary: #7848F4;
+  --primary-700: rgba(120, 72, 244, 0.7);
   --secondary: #000000;
   --background-primary: #F8F8FA;
   --white: #FFFFFF;

@@ -32,10 +32,14 @@ const Event = () => {
     const [address, setAddress] = useState(event?.venue);
     const [loadingEvent, setLoadingEvent] = useState(true);
     const [organiserEvents, setOrganiserEvents] = useState([]);
-    
+    const [loadPage, setLoadPage] = useState(true);
+
     useEffect(() => {
         // scroll to top
         window.scrollTo(0, 0);
+        setTimeout(() => {
+            setLoadPage(false);
+        }, 1000);
     }, [event]);
 
     useEffect(() => {
@@ -43,7 +47,7 @@ const Event = () => {
             try {
                 setLoadingEvent(true);
                 const response = await getOrganiserEvents({ organiserCollege: event?.organiserCollege });
-                
+
                 if (response) {
                     const events = response?.events.filter(otherEvents => otherEvents?.id !== event?.id);
                     setOrganiserEvents(events);
@@ -58,7 +62,11 @@ const Event = () => {
 
     console.log(organiserEvents);
 
-    return (
+    return loadPage ? (
+        <div className='d-flex justify-content-center align-items-center' style={{ width: '100vw', height: '100vh' }}>
+            <Loader width={'80px'} borderWidth={'8px'} color={'var(--primary)'} />
+        </div>
+    ) : (
         <div className='main' id='event'>
             <Header />
             <EventBanner

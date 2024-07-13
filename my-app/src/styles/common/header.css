@@ -26,6 +26,10 @@ p {
     padding: 0;
 }
 
+.p1 {
+    color: var(--secondary);
+}
+
 .p2 {
     color: var(--primary);
 }

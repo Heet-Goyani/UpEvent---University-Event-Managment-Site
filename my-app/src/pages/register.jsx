@@ -155,6 +155,7 @@ const Register = ({ user }) => {
                                     setShowDropdown(true);
                                 }}
                                 value={filterText}
+                                autoComplete="false"
                             />
                             <i className="bi bi-chevron-down dropdown-icon"></i>
                             {showDropdown && (

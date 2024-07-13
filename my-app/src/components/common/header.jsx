@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
+
 import { useNavigate } from 'react-router-dom';
 
 // styles
@@ -10,12 +15,29 @@ import { images } from '../../assets/images';
 // react-redux
 import { useSelector, useDispatch } from 'react-redux';
 import { logOut } from '../../redux/slices/userSlice';
+import { logOut as logoutOrganiser } from '../../redux/slices/organiserSlice';
 
 const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [open, setOpen] = React.useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const { userToken, userData } = useSelector(state => state.user);
+    const { organiserToken, organiserData } = useSelector(state => state.organiser);
+
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleAction = () => {
+        dispatch(logOut());
+        navigate('/user-login', { replace: true });
+    };
 
     const handleLogin = () => {
         navigate('/user-login');
@@ -26,13 +48,17 @@ const Header = () => {
     };
 
     useEffect(() => {
-        if(userToken !== null && userData !== null) {
+        if (userToken !== null && userData !== null) {
             console.log('User is logged in');
+            dispatch(logoutOrganiser());
+            setIsLoggedIn(true);
+        } else if (organiserToken !== null && organiserData !== null) {
+            console.log('Organiser is logged in');
+            dispatch(logOut());
             setIsLoggedIn(true);
         }
-        console.log(userToken, userData);
     }, []);
-    
+
     return (
         <div className='cont' id='home-header'>
             <div className='home-heading'>
@@ -52,17 +78,34 @@ const Header = () => {
                             <a className="dropdown-item" href="/bookmarks">
                                 <i className="bi bi-bookmarks"></i> Bookmarks
                             </a>
+
                             <a className="dropdown-item" href="/registered-events">
                                 <i className="bi bi-calendar4-event"></i> Events
                             </a>
                             <div className="dropdown-divider"></div>
-                            <div className="dropdown-item" href="/" onClick={() => {
-                                dispatch(logOut());
-                                navigate('/user-login', { replace: true });
-                            }}>
-                                <i className="bi bi-box-arrow-right"></i> Log Out
+                            <div className="dropdown-item" href="/" onClick={handleClickOpen}>
+                                <i className="bi bi-box-arrow-right"></i>Log Out
                             </div>
                         </div>
+                        <Dialog
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">
+                                'Are you sure you want to log out?'
+                            </DialogTitle>
+                            <DialogActions>
+                                <Button className='dialog-btn' onClick={handleClose}>Cancel</Button>
+                                <Button className='dialog-btn' onClick={() => {
+                                    handleAction();
+                                    handleClose();
+                                }}>
+                                    Log Out
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
                     </div>
                 ) : (
                     <div className='btnBox'>

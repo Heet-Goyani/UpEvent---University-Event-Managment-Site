@@ -22,6 +22,15 @@ const RegisteredEvents = () => {
     // local states
     const [loading, setLoading] = useState(true);
     const [registrations, setRegistrations] = useState();
+    const [filteredEvents, setFilteredEvents] = useState();
+    const [filterTypes, setFilterTypes] = useState({
+        'availability': [],
+        'genre': [],
+        'startDate': null,
+        'endDate': null,
+        'run': true,
+    })
+    const [loadPage, setLoadPage] = useState(true);
 
     useEffect(() => {
         const fetchUserRegistrations = async () => {
@@ -43,29 +52,60 @@ const RegisteredEvents = () => {
         fetchUserRegistrations();
     }, [])
 
-    return (
+    useEffect(() => {
+        if (registrations?.length > 0) {
+            setLoading(true);
+            const filtered = registrations?.filter(event => {
+                const dateTime = new Date(event?.date.slice(0, 11) + event?.time + event?.date.slice(19, 23));
+                if (
+                    (filterTypes.availability.length == 0 || filterTypes.availability.includes(event?.available)) &&
+                    (filterTypes.genre.length == 0 || filterTypes.genre.includes(event?.genre)) &&
+                    (filterTypes.startDate == null || dateTime >= new Date(filterTypes.startDate)) &&
+                    (filterTypes.endDate == null || dateTime <= new Date(filterTypes.endDate))
+                ) return true;
+
+                return false;
+            })
+            setFilteredEvents(filtered);
+            setLoading(false);
+        }
+    }, [registrations, filterTypes])
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoadPage(false);
+        }, 1000);
+    });
+
+    return loadPage ? (
+        <div className='d-flex justify-content-center align-items-center' style={{ width: '100vw', height: '100vh' }}>
+            <Loader width={'80px'} borderWidth={'8px'} color={'var(--primary)'} />
+        </div>
+    ) : (
         <div className="main align-items-start user-saved-events">
             <div><Toaster /></div>
             {/* <Header /> */}
             <div className="user-saved-events-content">
                 <div className="user-saved-events-header">
                     <div className="user-saved-events-heading">Registered Events</div>
-                    <Filter />
+                    <Filter filterTypes={filterTypes} setFilterTypes={setFilterTypes} />
                 </div>
                 <div className="saved-events-list">
                     {
                         loading ? <>
-                            <Loader width={'60px'} borderWidth={'6px'} color={'var(--primary)'} />
-                        </> : registrations && registrations.length > 0 ? <>
+                            <div className='d-flex justify-content-center align-items-center' style={{ width: '100vw', height: '100vh' }}>
+                                <Loader width={'60px'} borderWidth={'6px'} color={'var(--primary)'} />
+                            </div>
+                        </> : filteredEvents && filteredEvents.length > 0 ? <>
                             {
-                                    registrations.map((event, index) => {
+                                filteredEvents.map((event, index) => {
                                     return (
                                         <Card key={index} event={event} />
                                     )
                                 })
                             }
                         </> : <>
-                            <div className="no-events">No events registered</div>
+                            <div className="no-events">No events available</div>
                         </>
                     }
                 </div>

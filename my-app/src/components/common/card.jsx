@@ -31,12 +31,11 @@ const Card = ({ event }) => {
         <div className="card">
             <div><Toaster /></div>
             <div className="img-container">
-                {/* <img src={event.coverImage} alt="cover-img" className="cover-img" /> */}
                 <img
                     loading="lazy"
                     className="cover-img"
-                    src="https://images.unsplash.com/photo-1674574124345-02c525664b65?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="card-img"
+                    src={event?.coverImage}
+                    alt="cover-image"
                     onClick={() => {
                         console.log(event.id);
                         navigate(`/event/${event.id}`, { state: { event: event } });

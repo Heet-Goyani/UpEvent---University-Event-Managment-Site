@@ -5,10 +5,12 @@ import { thunk } from 'redux-thunk';
 
 // slices
 import UserSlice from './slices/userSlice';
+import OrganiserSlice from './slices/organiserSlice';
 
 // root-reducer
 const rootreducer = combineReducers({
     user: UserSlice,
+    organiser: OrganiserSlice,
     devTools: process.env.NODE_ENV !== 'production'
 });
 
@@ -16,7 +18,7 @@ const rootreducer = combineReducers({
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['user'],
+    whitelist: ['user','organiser'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootreducer);

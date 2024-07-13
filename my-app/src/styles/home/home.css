@@ -22,7 +22,6 @@ body {
 section {
     width: 100vw;
     height: 100vh;
-    z-index: 1;
     /* scroll-snap-align: start; */
     /* scroll-snap-stop: always; */
 }
@@ -113,7 +112,7 @@ section {
     width: 100%;
 }
 
-#upcoming .no-events {
+.no-events {
     font-size: 2rem;
     color: #383838;
     text-align: center;
@@ -194,7 +193,7 @@ section {
         padding: 20px 6vw;
     }
 
-    #upcoming .no-events {
+    .no-events {
         font-size: 1.8rem;
     }
 }
@@ -237,7 +236,7 @@ section {
         padding: 20px 6vw 10px 6vw;
     }
 
-    #upcoming .no-events {
+    .no-events {
         font-size: 1.6rem;
     }
 }
@@ -271,7 +270,7 @@ section {
         padding: 0 15px;
     }
 
-    #upcoming .no-events {
+    .no-events {
         font-size: 1.4rem;
     }
 }
