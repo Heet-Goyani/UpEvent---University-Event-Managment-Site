@@ -24,15 +24,7 @@ const getProfile = async (req, res) => {
 const updateProfile = async (req, res) => {
   try {
     const id = req.user.id;
-    const {
-      name,
-      profilePic,
-      college,
-      instagram,
-      linkedin,
-      facebook,
-      twitter,
-    } = req.body;
+    const { name, profilePic, coverPic, about, website, location } = req.body;
     const organiser = await Organiser.findOne({
       where: { id },
     });
@@ -42,11 +34,10 @@ const updateProfile = async (req, res) => {
       {
         name,
         profilePic,
-        college,
-        instagram,
-        linkedin,
-        facebook,
-        twitter,
+        coverPic,
+        about,
+        website,
+        location
       },
       {
         where: { id },

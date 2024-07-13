@@ -64,9 +64,9 @@ Event.init(
       defaultValue: "12:00:00",
     },
     available: {
-      type: Sequelize.DataTypes.ENUM("online", "offline"),
+      type: Sequelize.DataTypes.ENUM("Online", "Offline"),
       allowNull: false,
-      defaultValue: "offline",
+      defaultValue: "Offline",
     },
     venue: {
       type: Sequelize.DataTypes.STRING,
