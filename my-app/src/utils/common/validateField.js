@@ -1,4 +1,4 @@
-const isValidUrl = (url) => {
+export const isValidUrl = (url) => {
     try {
         new URL(url);
         return true;

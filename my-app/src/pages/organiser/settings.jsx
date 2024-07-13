@@ -41,8 +41,8 @@ const Settings = () => {
         if (update) {
             try {
                 setRequestInProgress(true);
-                const data = await updateProfile(organiserToken, info, setRequestInProgress);
-                
+                const data = await updateProfile(organiserToken, info);
+
                 const updatedData = await getNewOrganiserData(organiserToken);
                 dispatch(updateOrganiser({
                     organiserToken: organiserToken,
@@ -172,13 +172,13 @@ const Settings = () => {
                         </Button>
                     </DialogActions>
                 </Dialog>
+                <Backdrop
+                    sx={(theme) => ({ color: 'var(--primary)', zIndex: theme.zIndex.drawer + 1 })}
+                    open={requestInProgress}
+                >
+                    <CircularProgress color="inherit" />
+                </Backdrop>
             </div>
-            <Backdrop
-                sx={(theme) => ({ color: 'var(--primary)', zIndex: theme.zIndex.drawer + 1 })}
-                open={requestInProgress}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
         </>
     )
 };

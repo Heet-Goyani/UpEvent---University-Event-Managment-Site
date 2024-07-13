@@ -50,7 +50,9 @@ export default function InputFileUpload({ value, setValue }) {
                 tabIndex={-1}
                 startIcon={<CloudUploadIcon />}
             >
-                {value ? value.name : 'UPLOAD COVER IMAGE'}
+                <span>
+                    {value ? value.name || value : 'UPLOAD COVER IMAGE'}
+                </span>
                 <VisuallyHiddenInput
                     type="file"
                     accept=".jpeg,.jpg,.png,.webp"

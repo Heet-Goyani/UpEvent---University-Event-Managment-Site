@@ -1,7 +1,7 @@
 import { API } from '../../apis';
 import { handleTime } from '../common/format';
 
-export const createEvent = async (event, organiserToken, setCreating) => {
+export const createEvent = async (event, organiserToken) => {
     try {
         const date = new Date(event.date).toISOString();
         const time = handleTime(event.time, 1);
@@ -36,12 +36,10 @@ export const createEvent = async (event, organiserToken, setCreating) => {
     } catch (error) {
         console.log(error);
         throw new Error(error);
-    } finally {
-        setCreating(false);
     }
 };
 
-const imageUpload = async (image) => {
+export const imageUpload = async (image) => {
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);

@@ -123,7 +123,6 @@ const Organiser = () => {
     const [activeComponent, setActiveComponent] = React.useState('MyEvents');
     const [dialogOpen, setDialogOpen] = React.useState(false);
     const [loadPage, setLoadPage] = React.useState(true);
-    const [loadComponent, setLoadComponent] = React.useState(true);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -142,7 +141,6 @@ const Organiser = () => {
     };
 
     const handleLogout = () => {
-        console.log('clicked Logout');
         navigate('/organiser-login', { replace: true });
         dispatch(logoutOrganiser());
     }
@@ -209,15 +207,12 @@ const Organiser = () => {
                     <List>
                         <DrawerItem name={'My Events'} icon={'bi-calendar-week-fill'} handleClick={() => {
                             setActiveComponent('MyEvents');
-                            console.log('clicked My Events');
                         }} />
                         <DrawerItem name={'Create Event'} icon={'bi-calendar-plus-fill'} handleClick={() => {
                             setActiveComponent('CreateEvent');
-                            console.log('clicked Create Event');
                         }} />
                         <DrawerItem name={'Settings'} icon={'bi-gear-fill'} handleClick={() => {
                             setActiveComponent('Settings');
-                            console.log('clicked Settings');
                         }} />
                     </List>
                     <Divider />

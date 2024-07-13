@@ -1,6 +1,6 @@
 import { API } from "../../apis";
 
-export const updateProfile = async (organiserToken, info, setRequestInProgress) => {
+export const updateProfile = async (organiserToken, info) => {
     try {
         const response = await fetch(`${API.BASE_URL}${API.UPDATE_ORGANISER}`, {
             method: 'PATCH',
@@ -22,8 +22,6 @@ export const updateProfile = async (organiserToken, info, setRequestInProgress) 
     } catch (error) {
         console.log(error);
         throw new Error(error);
-    } finally {
-        setRequestInProgress(false);
     }
 };
 

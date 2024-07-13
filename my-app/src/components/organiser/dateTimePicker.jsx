@@ -20,7 +20,7 @@ const theme = createTheme({
     },
 });
 
-export default function DateTimePickers({ dateValue, setDateValue, timeValue, setTimeValue }) {
+export default function DateTimePickers({ dateValue, setDateValue, timeValue, setTimeValue, dateRequired, timeRequired }) {
     const handleDateChange = (value) => {
         setDateValue(value);
     };
@@ -38,7 +38,7 @@ export default function DateTimePickers({ dateValue, setDateValue, timeValue, se
                     onChange={handleDateChange}
                     slotProps={{
                         textField: {
-                            required: true,
+                            required: dateRequired,
                             sx: { '& > :not(style)': { mr: 1, minWidth: 0, maxWidth: '100%' } }
                         }
                     }}
@@ -49,7 +49,7 @@ export default function DateTimePickers({ dateValue, setDateValue, timeValue, se
                     onChange={handleTimeChange}
                     slotProps={{
                         textField: {
-                            required: true,
+                            required: timeRequired,
                             sx: { '& > :not(style)': { mr: 1, minWidth: 0, maxWidth: '100%' } }
                         }
                     }}

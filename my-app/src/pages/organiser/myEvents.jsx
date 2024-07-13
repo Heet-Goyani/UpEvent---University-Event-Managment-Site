@@ -6,7 +6,6 @@ import "../../styles/organiser/myEvent.scss";
 
 // components
 import OrganiserEventCard from "../../components/organiser/card";
-import Loader from "../../components/common/loader";
 
 // utils
 import { getOrganiserEvents } from "../../utils/common/organiserEvents";
@@ -22,7 +21,6 @@ const MyEvent = () => {
 
     useEffect(() => {
         const fetchEvents = async () => {
-            console.log('fetching events');
             try {
                 setLoadPage(true);
                 const response = await getOrganiserEvents({ organiserCollege: organiserData?.name });
@@ -30,7 +28,9 @@ const MyEvent = () => {
             } catch (error) {
                 console.log(error);
             } finally {
-                setLoadPage(false);
+                setTimeout(() => {
+                    setLoadPage(false);
+                }, 800);
             }
         }
 
@@ -48,13 +48,13 @@ const MyEvent = () => {
                 <div className="events-list mt-4">
                     {
                         events?.length > 0 ? (
-                                events?.map((item, index) => (
-                                    <OrganiserEventCard
-                                        key={index}
-                                        item={item}
-                                        setEventsChanged={setEventsChanged}
-                                    />
-                                ))
+                            events?.map((item, index) => (
+                                <OrganiserEventCard
+                                    key={index}
+                                    item={item}
+                                    setEventsChanged={setEventsChanged}
+                                />
+                            ))
                         ) : (
                             <div className="no-events">No events created</div>
                         )

@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+import * as React from 'react';
 import Button from "@mui/material/Button";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import toast, { Toaster } from "react-hot-toast";
-
-// styles
-import "../../styles/organiser/createEvent.scss";
 
 // component
 import TextField from "../../components/organiser/textField";
@@ -14,35 +11,43 @@ import DateTimePickers from "../../components/organiser/dateTimePicker";
 import InputFileUpload from "../../components/organiser/inputFileUpload";
 import Dropdown from "../../components/organiser/dropdown";
 
+// navigate
+import { useLocation, useNavigate } from 'react-router-dom';
+
 // utils
 import { validateField } from "../../utils/common/validateField";
-import { createEvent } from "../../utils/organiser/createEvent";
+import { updateEvent } from '../../utils/organiser/updateEvent';
 
 // redux
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-const CreateEvent = () => {
-    const { organiserToken } = useSelector((state) => state.organiser);
+const UpdateEvent = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const event = location?.state?.event;
+    const { organiserToken } = useSelector(state => state.organiser);
+
     const [eventStates, setEventStates] = React.useState({
-        eventName: "",
+        eventName: event?.name,
         date: null,
         time: null,
-        venue: "",
-        genre: "Technical",
-        available: "Online",
-        description: "",
-        coverImage: "",
-        reachUsAt: "",
-        meetLink: "",
-        facebook: "",
-        instagram: "",
-        twitter: "",
-        linkedin: "",
+        venue: event?.venue,
+        genre: event?.genre,
+        available: event?.available,
+        description: event?.description,
+        coverImage: event?.coverImage,
+        reachUsAt: event?.reachUsAt || "",
+        meetLink: event?.meetLink || "",
+        facebook: event?.facebook || "",
+        instagram: event?.instagram || "",
+        twitter: event?.twitter || "",
+        linkedin: event?.linkedin || "",
     });
-    const [creating, setCreating] = React.useState(false);
+    const [updating, setUpdating] = React.useState(false);
     const [loadPage, setLoadPage] = React.useState(true);
 
-    useEffect(() => {
+    React.useEffect(() => {
         setTimeout(() => {
             setLoadPage(false);
         }, 500);
@@ -57,7 +62,7 @@ const CreateEvent = () => {
 
     const handleCreateEvent = async () => {
         try {
-            setCreating(true);
+            setUpdating(true);
             for (const key in eventStates) {
                 if (eventStates.hasOwnProperty(key)) {
                     const value = eventStates[key];
@@ -69,29 +74,14 @@ const CreateEvent = () => {
                 }
             }
             console.log("Validation successful");
-            const response = await createEvent(eventStates, organiserToken);
+            const response = await updateEvent(event?.id, organiserToken, eventStates);
             toast.success(response.message);
-            setEventStates({
-                eventName: "",
-                date: null,
-                time: null,
-                venue: "",
-                genre: "Technical",
-                available: "Online",
-                description: "",
-                coverImage: "",
-                reachUsAt: "",
-                meetLink: "",
-                facebook: "",
-                instagram: "",
-                twitter: "",
-                linkedin: "",
-            });
+            navigate('/dashboard', { replace: true });
         } catch (error) {
             console.error(error);
             toast.error(error);
         } finally {
-            setCreating(false);
+            setUpdating(false);
         }
     };
 
@@ -102,8 +92,8 @@ const CreateEvent = () => {
     ) : (
         <>
             <div><Toaster /></div>
-            <div id="createEvent" className="pb-3">
-                <div className="createEvent-heading">Create Event</div>
+            <div id="createEvent" className="p-5 py-2">
+                <div className="createEvent-heading" style={{ fontSize: '2rem' }}>Update Event</div>
                 <div className="createEvent-content">
                     <div className="details-title">Event details</div>
                     <div className="createEvent-necessaryDetails">
@@ -218,20 +208,20 @@ const CreateEvent = () => {
                         variant="contained"
                         className="create-btn mr-2"
                         onClick={handleCreateEvent}
-                        disabled={creating}
+                        disabled={updating}
                     >
-                        Creat Event
+                        Save Changes
                     </Button>
                 </div>
                 <Backdrop
                     sx={(theme) => ({ color: 'var(--primary)', zIndex: theme.zIndex.drawer + 1 })}
-                    open={creating}
+                    open={updating}
                 >
                     <CircularProgress color="inherit" />
                 </Backdrop>
             </div>
         </>
     )
-};
+}
 
-export default CreateEvent;
+export default UpdateEvent;
