@@ -22,3 +22,14 @@
 - Cloudinary API
 
 
+## How to use (Commands)⚡
+- `git clone https://github.com/Himanshukabra22/UpEvent-WebD`
+- `cd UpEvent-WebD`
+- Terminal 1 (Backend):
+    - `cd ./Backend`
+    - `npm i`
+    - `npm start`
+- Terminal 2 (Frontend):
+    - `cd ./my-app`
+    - `npm i`
+    - `npm run dev`
