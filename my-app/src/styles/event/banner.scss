@@ -1,0 +1,114 @@
+.event-banner-container {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
+    height: 625px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin: 25px 0;
+    padding: 0 4vw;
+}
+
+.event-banner-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(19, 19, 21, 0.6);
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.event-banner-container>div {
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+}
+
+.event-banner-container .description-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 50%;
+    height: 100%;
+    z-index: 2;
+
+    .name {
+        font-size: 4rem;
+        font-family: Bold;
+    }
+
+    .organiser {
+        font-size: 2.25rem;
+        font-family: Bold;
+        margin-top: 10px;
+    }
+
+    .desc {
+        font-size: 1rem;
+        font-family: Regular;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.event-banner-container .description-box .btnBox button:hover {
+    background-color: var(--white);
+    color: var(--primary);
+}
+
+.event-banner-container .event-register-box {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    height: 50%;
+    background-color: var(--white);
+    color: var(--black);
+    z-index: 2;
+    border-radius: 8px;
+
+    .date-time {
+        div {
+            padding-bottom: 8px;
+        }
+
+        .dt-heading {
+            color: var(--black);
+            font-family: Bold;
+            font-size: 1.5rem;
+        }
+
+        .dt-content {
+            font-family: Regular;
+            color: var(--gray-600);
+            font-size: 1.125rem;
+        }
+
+        .dt-add {
+            font-family: Regular;
+            color: var(--primary);
+            font-size: 1rem;
+            cursor: pointer;
+            user-select: none;
+        }
+    }
+
+    .register-box {
+        button {
+            margin-top: 10px;
+
+            i {
+                font-size: 1.125rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,229 @@
+.cont {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2vmax;
+    /* side margin 1 */
+    padding: 0 8.34vw;
+}
+
+.home-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-family: Bold;
+}
+
+.home-heading .logo {
+    width: 40px;
+    margin-right: 20px;
+}
+
+p {
+    margin : 0;
+    padding: 0;
+}
+
+.p1 {
+    color: var(--secondary);
+}
+
+.p2 {
+    color: var(--primary);
+}
+
+.profile {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.btnBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    border: none;
+    cursor: pointer;
+    min-height: 45px;
+    min-width: 100px;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-family: 'Regular';
+    font-size: 16px;
+}
+
+.btn-outline {
+    color: var(--primary);
+    background-color: transparent;
+    border: 1px solid var(--primary);
+    box-shadow: rgba(120, 72, 244, 0.3) 0px 0px 8px;
+}
+
+.btn-fill {
+    color: var(--white);
+    background-color: var(--primary);
+    box-shadow: var(--primary) 0px 0px 5px;
+}
+
+.btn-outline:hover {
+    background-color: rgba(120, 72, 244, 0.3);
+    transition: 0.3s;
+}
+
+.btn-fill:hover {
+    background-color: rgba(120, 72, 244, 0.7);
+    transition: 0.3s;
+}
+
+.profile-section .dropdown-menu {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 120px;
+    background-color: var(--white);
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+    padding: 0;
+}
+
+.dropdown-menu .dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: var(--primary);
+    font-family: 'Regular';
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.dropdown-menu .dropdown-divider {
+    margin: 0 5px;
+    border-color: var(--primary);
+}
+
+.dropdown-menu .dropdown-item .bi {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: rgba(120, 72, 244, 0.3);
+    color: var(--primary);
+}
+
+@media screen and (max-width: 1024px){
+    .cont {
+        margin-top: 25px;
+        /* side margin 2 */
+        padding: 0 6vw;
+    }
+
+    .profile {
+        width: 40px;
+        height: 40px;
+    }
+
+    .home-heading .logo {
+        width: 36px;
+        margin-right: 16px;
+    }
+
+    .home-heading {
+        font-size: 2.25rem;
+    }
+
+    .btn {
+        min-height: 40px;
+        min-width: 90px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .cont {
+        margin-top: 20px;
+        /* side margin 3 */
+        padding: 0 6vw;
+    }
+
+    .home-heading .logo {
+        width: 32px;
+        margin-right: 12px;
+    }
+
+    .home-heading {
+        font-size: 2rem;
+    }
+
+    .btn {
+        min-height: 36px;
+        min-width: 80px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .cont {
+        margin-top: 15px;
+        /* side margin 4 */
+        padding: 0 20px;
+    }
+
+    .home-heading .logo {
+        width: 28px;
+        margin-right: 8px;
+    }
+
+    .home-heading {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        min-height: 32px;
+        min-width: 70px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 360px){
+    .cont {
+        /* side margin 5 */
+        padding: 0 15px;
+    }
+
+    .profile {
+        width: 35px;
+        height: 35px;
+    }
+
+    .btn {
+        min-height: 30px;
+        min-width: 65px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 320px){
+    .home-heading .logo {
+        width: 24px;
+        margin-right: 8px;
+    }
+
+    .home-heading {
+        font-size: 1.25rem;
+    }
+
+    .btn {
+        min-height: 28px;
+        min-width: 60px;
+        font-size: 10px;
+    }
+}

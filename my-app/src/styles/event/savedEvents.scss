@@ -1,0 +1,48 @@
+.user-saved-events {
+    width: 100%;
+    
+    .user-saved-events-content {
+        width: 100%;
+        margin-top: 3vmax;
+        padding: 0 8vw;
+        
+        .user-saved-events-header {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2.5vmax;
+
+            .user-saved-events-heading {
+                font-family: Bold;
+                font-size: 2rem;
+                color: var(--black);
+            }
+
+            @media screen and (max-width: 768px){
+                .user-saved-events-heading {
+                    font-size: 1.75rem;
+                }
+            }
+
+            @media screen and (max-width: 492px){
+                .user-saved-events-heading {
+                    font-size: 1.5rem;
+                }
+            }
+
+            @media screen and (max-width: 376px){
+                .user-saved-events-heading {
+                    font-size: 1.25rem;
+                }
+            }
+        }
+        .saved-events-list {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+    }
+}
