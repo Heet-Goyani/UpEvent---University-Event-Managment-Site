@@ -75,11 +75,16 @@ const Register = ({ user }) => {
                 }
                 
                 const response = await userRegister(name, selectedCollege, email, password);
+                
                 if (response && response.token) {
+                    // successful registration -> show toast and update redux
                     toast.success('Registered successful!');
-                    dispatch(updateUser({ userToken: response.token, userData: response.user }))
+                    dispatch(updateUser({ userToken: response.token, userData: response.user }));
+
+                    // navigation to home
                     setTimeout(() => {
                         navigate('/');
+                        window.location.reload();
                     }, 1000);
                 } else {
                     toast.error(response.message);
@@ -105,11 +110,16 @@ const Register = ({ user }) => {
                 }
 
                 const response = await organiserRegister(selectedCollege, email, password, about);
+
                 if (response && response.token) {
+                    // successful registration -> show toast and update redux
                     toast.success('Registered successful!');
-                    dispatch(updateOrganiser({ userToken: response.token, userData: response.user }))
+                    dispatch(updateOrganiser({ userToken: response.token, userData: response.user }));
+
+                    // navigation to dashboard
                     setTimeout(() => {
                         navigate('/dashboard');
+                        window.location.reload();
                     }, 1000);
                 } else {
                     toast.error(response.message);
@@ -127,7 +137,10 @@ const Register = ({ user }) => {
             <div><Toaster /></div>
             <img loading="lazy" src={user ? images.register_cover : images.register_cover2} alt="Cover Image" className="cover-img" />
             <div className="right-portion">
-                <div className="title">Up<span className="p2">Event</span></div>
+                <div className="title" style={{ cursor: 'pointer' }} onClick={() => {
+                    navigate('/');
+                    window.location.reload();
+                }}>Up<span className="p2">Event</span></div>
                 <div className="heading">{user ? 'Create an Account' : 'Organiser Register Portal'}</div>
                 <form style={{ marginTop: '40px' }}>
                     {

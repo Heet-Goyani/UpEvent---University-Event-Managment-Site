@@ -49,12 +49,14 @@ const LogIn = ({ user }) => {
                     if(user){
                         dispatch(updateUser({ userToken: response.token, userData: response.user }));
                         setTimeout(() => {
-                            navigate('/', { replace: true });
+                            navigate('/');
+                            window.location.reload();
                         }, 1000);
                     } else {
                         dispatch(updateOrganiser({ organiserToken: response.token, organiserData: response.organiser }));
                         setTimeout(() => {
-                            navigate('/dashboard', { replace: true });
+                            navigate('/dashboard');
+                            window.location.reload();
                         }, 1000);
                     }
                 } else {
@@ -90,7 +92,10 @@ const LogIn = ({ user }) => {
                         </div>
                     )
                 }
-                <div className="title">Up<span className="p2">Event</span></div>
+                <div className="title" style={{ cursor: 'pointer' }} onClick={() => {
+                    navigate('/');
+                    window.location.reload();
+                }}>Up<span className="p2">Event</span></div>
                 <div className="heading">{forgotPassword ? 'Recover your Password' : user ? 'Log In to UpEvent' : 'Organiser Login Portal'}</div>
                 {
                     forgotPassword && (

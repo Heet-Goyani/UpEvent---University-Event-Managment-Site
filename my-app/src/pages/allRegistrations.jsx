@@ -37,7 +37,6 @@ const RegisteredEvents = () => {
             try {
                 setLoading(true);
                 const response = await getAllRegistrations(userToken);
-                console.log(response?.events);
                 if (response) {
                     setRegistrations(response?.events);
                 }

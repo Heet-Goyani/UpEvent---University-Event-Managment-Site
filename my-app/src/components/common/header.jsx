@@ -36,7 +36,7 @@ const Header = () => {
 
     const handleAction = () => {
         dispatch(logOut());
-        navigate('/user-login', { replace: true });
+        navigate('/user-login');
     };
 
     const handleLogin = () => {
@@ -72,7 +72,7 @@ const Header = () => {
                             <img src={images.defaultProfile} className="profile" alt="Profile" />
                         </a>
                         <div className="dropdown-menu dropdown-menu-right profile-dropdown" aria-labelledby="navbarDropdownMenuLink">
-                            <a className="dropdown-item" href="#">
+                            <a className="dropdown-item" href="/">
                                 <i className="bi bi-person"></i> Profile
                             </a>
                             <a className="dropdown-item" href="/bookmarks">

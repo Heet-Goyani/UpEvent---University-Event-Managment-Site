@@ -44,6 +44,8 @@ const Bookmarks = () => {
             } catch (err) {
                 toast.error('Unable to load user bookmarks. Please try again later.');
                 console.log('Error in fetching user bookmarks:', err);
+            } finally {
+                setLoading(false);
             }
         }
 
