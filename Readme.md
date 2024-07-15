@@ -23,19 +23,37 @@
 
 
 ## How to use (Commands)⚡
-- `git clone https://github.com/Himanshukabra22/UpEvent-WebD`
-- `cd UpEvent-WebD`
+```bash
+git clone https://github.com/Himanshukabra22/UpEvent-WebD
+cd UpEvent-WebD
+```
+
 - Terminal 1 (Backend):
-    - `cd ./Backend`
-    - `npm i`
-    - `npm start`
+```bash
+cd ./backend
+npm i
+npm start
+```
 - Terminal 2 (Frontend):
-    - `cd ./my-app`
-    - `npm i`
-    - `npm run dev`
+```bash
+cd ./my-app
+npm i
+npm run dev
+```
 
     
 ## User Interface
 
-![dashboard-home](./Screeshots/dashboard-home.png)
+![user-login](./Screeshots/user-login.png)
+![user-register](./Screeshots/user-register.png)
+![user-home](./Screeshots/user-home.png)
+![home-event-list](./Screeshots/home-event-list.png)
 ![bookmark](./Screeshots/bookmark.png)
+![other-events](./Screeshots/other-events.png)
+![event-filter](./Screeshots/event-filter.png)
+![event1](./Screeshots/event-1.png)
+![map](./Screeshots/event-1-map.png)
+![organiser-register](./Screeshots/organiser-register.png)
+![dashboard-home](./Screeshots/dashboard-home.png)
+![dashbboard-create-event](./Screeshots/dashboard-createEvent.png)
+![dashboard-settings](./Screeshots/dashboard-settings.png)
