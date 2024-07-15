@@ -42,11 +42,11 @@ npm run dev
 ```
 
     
-## User Interface
+## User Interface💯
 
+![user-home](./Screeshots/user-home.png)
 ![user-login](./Screeshots/user-login.png)
 ![user-register](./Screeshots/user-register.png)
-![user-home](./Screeshots/user-home.png)
 ![home-event-list](./Screeshots/home-event-list.png)
 ![bookmark](./Screeshots/bookmark.png)
 ![other-events](./Screeshots/other-events.png)
