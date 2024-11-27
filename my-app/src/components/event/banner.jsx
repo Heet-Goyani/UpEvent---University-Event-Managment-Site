@@ -97,7 +97,7 @@ const EventBanner = (props) => {
 
             const response = await eventBookmark(id, userToken);
             if (response.message == 'Unauthorized') {
-                toast.error('Please login to bookmart this event');
+                toast.error('Please login to bookmark this event');
                 setBookmarking(false);
                 return;
             }

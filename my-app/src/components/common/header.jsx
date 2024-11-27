@@ -21,7 +21,7 @@ const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [open, setOpen] = React.useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
     const { userToken, userData } = useSelector(state => state.user);
     const { organiserToken, organiserData } = useSelector(state => state.organiser);
 

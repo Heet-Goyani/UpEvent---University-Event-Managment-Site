@@ -46,9 +46,9 @@ Link to Loom
 https://www.loom.com/share/8471fbeb856a4686ae3236b0ad0a82a6
 
 ## Authors👨‍💻
-- [@Himanshukabra22](https://www.github.com/Himanshukabra22) - Backend
-- [@Antriksh1305](https://github.com/Antriksh1305) - Frontend and Design
 - [@Heet-Goyani](https://github.com/Heet-Goyani) - Frontend and Design
+- [@Antriksh1305](https://github.com/Antriksh1305) - Frontend and Design
+- [@Himanshukabra22](https://www.github.com/Himanshukabra22) - Backend
 
 ## Techstack💡
 - ReactJs

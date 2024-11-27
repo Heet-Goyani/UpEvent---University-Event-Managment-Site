@@ -13,7 +13,7 @@ const Footer = () => {
 
     return (
         <div id="footer">
-            <span className="p1">Up<span className="p2">Event</span></span>
+            <span className="p1" style={{ color: '#fff' }}>Up<span className="p2">Event</span></span>
             <form>
                 <div className="form-group">
                     <input
